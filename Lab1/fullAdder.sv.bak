@@ -1,0 +1,3 @@
+module fullAdder (A, B, cin, sum, cout);
+
+	
