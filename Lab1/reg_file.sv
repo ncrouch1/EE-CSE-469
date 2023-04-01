@@ -4,7 +4,16 @@ module reg_file(input logic clk, wr_en,
 	read_addr1, read_addr2, output logic [31:0]
 	read_data1, read_data2);
 	
-	
+	logic [15:0][31:0] memory;
+
+	assign read_data1 = memory[read_addr1];
+	assign read_data2 = memory[read_addr2];
+
+	always_ff @(posedge clk) begin
+		if (wr_en) begin
+			memory[write_addr] <= write_data;
+		end
+	end
 
 	
 	
