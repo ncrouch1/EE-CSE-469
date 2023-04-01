@@ -14,5 +14,7 @@ module reg_file(input logic clk, wr_en,
 			memory[write_addr] <= write_data;
 		end
 	end
+
 	
-endmodule 
+	
+endmodule
