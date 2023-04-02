@@ -1,0 +1,14 @@
+module ttAdder(a, b, sum, ctrl);
+	input logic [31:0] a, b;
+	input logic ctrl;
+	
+	output logic [31:0] sum;
+	
+	logic [31:0] cry;
+	assign cry[0] = ctrl;
+	
+	genvar i;
+	generate begin
+		for (i = 0; i < 32; i++) begin
+			fullAdder adder(
+	

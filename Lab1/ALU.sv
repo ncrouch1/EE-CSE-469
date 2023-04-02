@@ -6,34 +6,22 @@ module ALU(A, B, CTRL, Result, Flags);
 	output logic [31:0] Result;
 	output logic [3:0] Flags;
 	
+	logic cout;
+	assign cout = 0;
+	
 	// perform
 	
 	always_comb begin
 		case(CTRL) 
 			// Add
-			2'b00: begin
-				logic in0, in1, sum, cin, cout;
-				cout = 0;
-				fullAdder adder(.A(in0), .B(in1), sum, cin, cout);
-				for (i = 0; i < 2**5; i++) begin
-					cin = cout;
-					in0 = A[i];
-					in1 = B[i];
-					Result[i] = sum;
-				end
+			2'b00 : begin : add
+				ttLogic ttadd(.a(A), .b(B), .sum(Result), .ctrl(CTRL[0]), .cout(cout));
 			end
 			
+			
 			// Sub
-			2'b01: begin 
-				logic in0, in1, sum, cin, cout;
-				cout = 1;
-				fullAdder adder(.A(in0), .B(in1), sum, cin, cout);
-				for (i = 0; i < 2**5; i++) begin
-					cin = cout;
-					in0 = A[i];
-					in1 = ~B[i];
-					Result[i] = sum;
-				end	
+			2'b01 : begin : sub
+				ttLogic ttsub(.a(A), .b(B), .sum(Result), .ctrl(CTRL[0]), .cout(cout)); 
 			end
 			
 			// And
