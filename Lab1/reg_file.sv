@@ -15,6 +15,10 @@ module reg_file(input logic clk, wr_en,
 		end
 	end
 
-	
-	
+endmodule
+
+module reg_file_tb ()
+
+
+
 endmodule
