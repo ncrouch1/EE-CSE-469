@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC
-Sat Apr 01 23:42:27 2023
+Sun Apr 02 22:45:13 2023
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ agreement for further details.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Sat Apr 01 23:42:27 2023           ;
+; Analysis & Synthesis Status ; Failed - Sun Apr 02 22:45:13 2023           ;
 ; Quartus Prime Version       ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name               ; DE1_SoC                                     ;
 ; Top-level Entity Name       ; ALU                                         ;
@@ -161,7 +161,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Sat Apr 01 23:42:14 2023
+    Info: Processing started: Sun Apr 02 22:44:58 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC -c DE1_SoC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -174,14 +174,15 @@ Info (12021): Found 1 design units, including 1 entities, in source file reg_fil
 Info (12021): Found 2 design units, including 2 entities, in source file fulladder.sv
     Info (12023): Found entity 1: fullAdder File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv Line: 1
     Info (12023): Found entity 2: fullAdder_testBench File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv Line: 11
-Error (10170): Verilog HDL syntax error at ALU.sv(18) near text: "(";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 18
-Error (10170): Verilog HDL syntax error at ALU.sv(24) near text: "(";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 24
-Error (10112): Ignored design unit "ALU" at ALU.sv(1) due to previous errors File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 1
-Info (12021): Found 0 design units, including 0 entities, in source file alu.sv
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 3 errors, 1 warning
+Info (12021): Found 1 design units, including 1 entities, in source file alu.sv
+    Info (12023): Found entity 1: ALU File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at ttLogic.sv(21): created implicit net for "cout" File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 21
+Error (10158): Verilog HDL Module Declaration error at ttLogic.sv(1): port "cout" is not declared as port File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 1
+Error (10734): Verilog HDL error at ttLogic.sv(13): ctrl is not a constant File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 13
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 2 warnings
     Error: Peak virtual memory: 4767 megabytes
-    Error: Processing ended: Sat Apr 01 23:42:28 2023
-    Error: Elapsed time: 00:00:14
-    Error: Total CPU time (on all processors): 00:00:06
+    Error: Processing ended: Sun Apr 02 22:45:13 2023
+    Error: Elapsed time: 00:00:15
+    Error: Total CPU time (on all processors): 00:00:11
 
 

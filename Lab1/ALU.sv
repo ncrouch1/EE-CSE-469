@@ -11,29 +11,32 @@ module ALU(A, B, CTRL, Result, Flags);
 	
 	// perform
 	
-	always_comb begin
-		case(CTRL) 
-			// Add
-			2'b00 : begin : add
-				ttLogic ttadd(.a(A), .b(B), .sum(Result), .ctrl(CTRL[0]), .cout(cout));
+	generate
+		case(CTRL[0])
+		// Add
+			1'b0 : begin : add
+				ttLogic ttadd (.a(A), .b(B), .sum(Result), .ctrl(CTRL[0]), .cout(cout));
 			end
-			
 			
 			// Sub
-			2'b01 : begin : sub
-				ttLogic ttsub(.a(A), .b(B), .sum(Result), .ctrl(CTRL[0]), .cout(cout)); 
-			end
-			
+			1'b1 : begin : sub
+				ttLogic ttsub (.a(A), .b(B), .sum(Result), .ctrl(CTRL[0]), .cout(cout));
+			end		
+		endcase
+	endgenerate
+	
+	always_comb begin
+		case(CTRL)
 			// And
-			2'b10: begin 
-				for (i = 0; i < 2**5; i++) begin
+			2'b10 : begin : aand
+				for (i = 0; i < 32; i++) begin 
 					Result[i] = (A[i] & B[i]);
 				end
 			end
 			
 			// Or
-			2'b11: begin
-				for (i = 0; i < 2**5; i++) begin
+			2'b11 : begin : orr
+				for (i = 0; i < 32; i++) begin 
 					Result[i] = (A[i] | B[i]);
 				end
 			end
