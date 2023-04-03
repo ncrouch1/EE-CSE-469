@@ -7,6 +7,8 @@ module ALU(A, B, CTRL, Result, Flags);
 	output logic [3:0] Flags;
 	
 	logic cout;
+	logic ctrl;
+	assign ctrl = CTRL[0];
 	
 	// perform
 	
@@ -14,12 +16,12 @@ module ALU(A, B, CTRL, Result, Flags);
 		case(CTRL[0])
 		// Add
 			1'b0 : begin : add
-				ttLogic ttadd (.a(A), .b(B), .sum(Result), .ctrl(CTRL[0]), .cout(cout));
+				ttLogic ttadd (.a(A), .b(B), .sum(Result), .ctrl(ctrl), .cout(cout));
 			end
 			
 			// Sub
 			1'b1 : begin : sub
-				ttLogic ttsub (.a(A), .b(B), .sum(Result), .ctrl(CTRL[0]), .cout(cout));
+				ttLogic ttsub (.a(A), .b(B), .sum(Result), .ctrl(ctrl), .cout(cout));
 			end		
 		endcase
 	endgenerate
