@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC
-Sun Apr 02 22:45:13 2023
+Sun Apr 02 23:16:23 2023
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ agreement for further details.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Sun Apr 02 22:45:13 2023           ;
+; Analysis & Synthesis Status ; Failed - Sun Apr 02 23:16:23 2023           ;
 ; Quartus Prime Version       ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name               ; DE1_SoC                                     ;
 ; Top-level Entity Name       ; ALU                                         ;
@@ -161,7 +161,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Sun Apr 02 22:44:58 2023
+    Info: Processing started: Sun Apr 02 23:16:08 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC -c DE1_SoC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -176,13 +176,11 @@ Info (12021): Found 2 design units, including 2 entities, in source file fulladd
     Info (12023): Found entity 2: fullAdder_testBench File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv Line: 11
 Info (12021): Found 1 design units, including 1 entities, in source file alu.sv
     Info (12023): Found entity 1: ALU File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at ttLogic.sv(21): created implicit net for "cout" File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 21
-Error (10158): Verilog HDL Module Declaration error at ttLogic.sv(1): port "cout" is not declared as port File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 1
-Error (10734): Verilog HDL error at ttLogic.sv(13): ctrl is not a constant File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 13
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 2 warnings
+Error (10734): Verilog HDL error at ttLogic.sv(14): ctrl is not a constant File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 14
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 1 warning
     Error: Peak virtual memory: 4767 megabytes
-    Error: Processing ended: Sun Apr 02 22:45:13 2023
+    Error: Processing ended: Sun Apr 02 23:16:23 2023
     Error: Elapsed time: 00:00:15
-    Error: Total CPU time (on all processors): 00:00:11
+    Error: Total CPU time (on all processors): 00:00:10
 
 

@@ -7,7 +7,6 @@ module ALU(A, B, CTRL, Result, Flags);
 	output logic [3:0] Flags;
 	
 	logic cout;
-	assign cout = 0;
 	
 	// perform
 	

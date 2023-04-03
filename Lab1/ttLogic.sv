@@ -3,6 +3,7 @@ module ttLogic(a, b, sum, ctrl, cout);
 	input logic ctrl;
 	
 	output logic [31:0] sum;
+	output logic cout;
 	
 	logic [32:0] cry;
 	assign cry[0] = ctrl;
