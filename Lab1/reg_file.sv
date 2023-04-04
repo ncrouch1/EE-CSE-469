@@ -1,3 +1,4 @@
+// this module stores 16x32 data with 2 asynch read and 1 synch write ports.
 module reg_file(input logic clk, wr_en,
 	input logic [31:0] write_data,
 	input logic [3:0] write_addr, input logic [3:0]
@@ -16,17 +17,19 @@ module reg_file(input logic clk, wr_en,
 	end
 
 endmodule
-
+// test module for regfile
 module reg_file_tb ();
 logic [31:0] write_data;
 logic [3:0] write_addr; 
 logic [3:0] read_addr1, read_addr2;
 logic [31:0] read_data1, read_data2;
 logic clk, wr_en;
-
+// instantiate module to test
 reg_file dut (clk, wr_en, write_data, write_addr, read_addr1, read_addr2, read_data1, read_data2);
 
-
+// this runs our module through a gauntlet, confirming that data is only written when
+// wr_en is high when clk goes high, and that the read changes as soon as the address changes 
+// for both ports.
 initial begin
 	clk = 0;
 	wr_en = 0;
