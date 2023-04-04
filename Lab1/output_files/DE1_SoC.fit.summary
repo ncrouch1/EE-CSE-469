@@ -1,13 +1,13 @@
-Fitter Status : Successful - Fri Mar 31 22:21:22 2023
+Fitter Status : Successful - Tue Apr 04 12:08:25 2023
 Quartus Prime Version : 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 Revision Name : DE1_SoC
-Top-level Entity Name : fullAdder
+Top-level Entity Name : ALU
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 2 / 32,070 ( < 1 % )
+Logic utilization (in ALMs) : 76 / 32,070 ( < 1 % )
 Total registers : 0
-Total pins : 5 / 457 ( 1 % )
+Total pins : 102 / 457 ( 22 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 4,065,280 ( 0 % )
 Total RAM Blocks : 0 / 397 ( 0 % )
