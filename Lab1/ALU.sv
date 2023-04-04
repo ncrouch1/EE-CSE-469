@@ -58,4 +58,45 @@ module ALU(a, b, ALUControl, Result, ALUFlags);
 	assign ALUFlags[0] = (~ALUControl[1] & ((a[31] & ~Result[31]) || (~a[31] & Result[31])) &
 					~(a[31] & b[31] & ALUControl[0]));
 endmodule
+
+module ALU_testbench();
+	logic [31:0] A, B, Result;
+	logic [1:0] ALUControl;
+	logic [3:0] ALUFlags;
+	
+	
+	ALU dut (.a(A), .b(B), .ALUControl(ALUControl), .Result(Result), .ALUFlags(ALUFlags));
+		
+	initial begin : Test_cases
+		// ADD 0, 0
+		A = 32'h00000000; B = 32'h00000000; ALUControl = 2'b00; #10;
+		// ADD 0, -1
+								B = 32'hFFFFFFFF; 						  #10;
+		// ADD 1, -1
+		A = 32'h00000001; B = 32'hFFFFFFFF; 						  #10;
+		// ADD FF, 1
+		A = 32'h000000FF; B = 32'h00000001; 						  #10;
+		// SUB 0, 0
+		A = 32'h00000000; B = 32'h00000000; ALUControl = 2'b01; #10;
+		// SUB 0, -1
+		A = 32'h00000000; B = 32'hFFFFFFFF; 						  #10;
+		// SUB 1, 1
+		A = 32'h00000001; B = 32'h00000001; 						  #10;
+		// AND FFFFFFFF, FFFFFFFF
+		A = 32'hFFFFFFFF; B = 32'hFFFFFFFF; ALUControl = 2'b10; #10;
+		// AND FFFFFFFF, 12345678
+								B = 32'h12345678;							  #10;
+		// AND 00000000, FFFFFFFF
+		A = 32'h00000000; B = 32'hFFFFFFFF;							  #10;
+		// OR FFFFFFFF, FFFFFFFF
+		A = 32'hFFFFFFFF; B = 32'hFFFFFFFF; ALUControl = 2'b11; #10;
+		// OR 12345678, 87654321
+		A = 32'h12345678; B = 32'h87654321; 						  #10;
+		// OR 00000000, FFFFFFFF
+		A = 32'h00000000; B = 32'hFFFFFFFF;							  #10;
+		// OR 00000000, 00000000
+								B = 32'h00000000;							  #10;
+	
+	end
+endmodule
 		
