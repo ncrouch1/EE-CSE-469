@@ -10,44 +10,16 @@
 # Copying C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv}
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 22:25:31 on Mar 31,2023
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv 
-# -- Compiling module fullAdder
-# -- Compiling module fullAdder_testBench
-# 
-# Top level modules:
-# 	fullAdder_testBench
-# End time: 22:25:31 on Mar 31,2023, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# 
-vsim work.fullAdder_testBench
-# vsim work.fullAdder_testBench 
-# Start time: 22:25:55 on Mar 31,2023
-# Loading sv_std.std
-# Loading work.fullAdder_testBench
-# Loading work.fullAdder
-vsim work.fullAdder_testBench
-# End time: 22:25:58 on Mar 31,2023, Elapsed time: 0:00:03
-# Errors: 0, Warnings: 0
-# vsim work.fullAdder_testBench 
-# Start time: 22:25:58 on Mar 31,2023
-# Loading sv_std.std
-# Loading work.fullAdder_testBench
-# Loading work.fullAdder
-vsim work.fullAdder_testBench
-# End time: 22:25:59 on Mar 31,2023, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-# vsim work.fullAdder_testBench 
-# Start time: 22:25:59 on Mar 31,2023
-# Loading sv_std.std
-# Loading work.fullAdder_testBench
-# Loading work.fullAdder
-add wave -position insertpoint sim:/fullAdder_testBench/*
-run -all
-# ** Note: $stop    : C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv(26)
-#    Time: 160 ps  Iteration: 0  Instance: /fullAdder_testBench
-# Break in Module fullAdder_testBench at C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv line 26
-# End time: 22:33:36 on Mar 31,2023, Elapsed time: 0:07:37
-# Errors: 0, Warnings: 0
+# Start time: 13:15:32 on Apr 04,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv 
+# -- Compiling module ttLogic
+# ** Error: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv(15): The generate if condition must be a constant expression.
+# End time: 13:15:32 on Apr 04,2023, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# ** Error: C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/vlog failed.
+# Error in macro ./DE1_SoC_run_msim_rtl_verilog.do line 8
+# C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/vlog failed.
+#     while executing
+# "vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv}"

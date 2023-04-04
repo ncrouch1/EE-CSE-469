@@ -9,7 +9,16 @@ module ttLogic(a, b, sum, ctrl, cout);
 	assign cry[0] = ctrl;
 	
 	logic [31:0] btemp;
-	assign btemp = ctrl ? b : ~b;
+	genvar j;
+	generate
+		for (j = 0; j < 32; j++) begin : negate
+			if (ctrl) begin
+				assign btemp[j] = ~b[j];
+			end else begin
+				assign btemp[j] = b[j];
+			end
+		end
+	endgenerate
 	
 	genvar i;
 	generate 
