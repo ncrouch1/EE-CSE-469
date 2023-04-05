@@ -23,26 +23,26 @@ module ALU(a, b, ALUControl, Result, ALUFlags);
 			assign orbus[i] = (a[i] | b[i]);
 		end
 	endgenerate
-	
+	// Set our result dependent on what result was requested.
 	always_comb begin
 		case(ALUControl) 
-			2'b00 : begin
+			2'b00 : begin // Add
 				Result = mathbus;
 			end
-			2'b01 : begin
+			2'b01 : begin // Subtract
 				Result = mathbus;
 			end
-			2'b10 : begin
+			2'b10 : begin // And
 				Result = andbus;
 			end
-			2'b11 : begin
+			2'b11 : begin // Or
 				Result = orbus;
 			end
 		endcase
 	end
-	
+	// set flags!
 	assign ALUFlags[3] = Result[31];
-	
+	// We check to see if the result is zero
 	logic[32:0] zeroTest;
 	assign zeroTest[0] = 1;
 	genvar j;
@@ -51,14 +51,15 @@ module ALU(a, b, ALUControl, Result, ALUFlags);
 			assign zeroTest[j+1] = zeroTest[j] & ~Result[j];
 		end
 	endgenerate
-	
+	// the following sets the zero flag
 	assign ALUFlags[2] = zeroTest[32];
-	
+	// Set the carryout flag
 	assign ALUFlags[1] = (~ALUControl[1] & cout);
+	// Set the negative flag
 	assign ALUFlags[0] = (~ALUControl[1] & ((a[31] & ~Result[31]) || (~a[31] & Result[31])) &
 					~(a[31] & b[31] & ALUControl[0]));
 endmodule
-
+// This module runs the ALU through the test cases.
 module ALU_testbench();
 	logic [31:0] A, B, Result;
 	logic [1:0] ALUControl;
