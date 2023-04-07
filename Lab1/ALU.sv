@@ -40,8 +40,7 @@ module ALU(a, b, ALUControl, Result, ALUFlags);
 			assign orbus[i] = (a[i] | b[i]);
 		end
 	endgenerate
-	
-	// start a combination logic block
+	// Set our result dependent on what result was requested.
 	always_comb begin
 		// open a case statement based on control
 			// 2'b00 ADD
@@ -49,30 +48,23 @@ module ALU(a, b, ALUControl, Result, ALUFlags);
 			// 2'b10 AND
 			// 2'b11 OR
 		case(ALUControl) 
-			2'b00 : begin
+			2'b00 : begin // Add
 				Result = mathbus;
 			end
-			2'b01 : begin
+			2'b01 : begin // Subtract
 				Result = mathbus;
 			end
-			2'b10 : begin
+			2'b10 : begin // And
 				Result = andbus;
 			end
-			2'b11 : begin
+			2'b11 : begin // Or
 				Result = orbus;
 			end
 		endcase
 	end
-	
-	
-	// start computing flags
-	
-	
-	// Assign the negative flag to the state of the Result bus sign bit
+	// set flags!
 	assign ALUFlags[3] = Result[31];
-	
-	
-	// create a state machine to compute if the result is zero
+	// We check to see if the result is zero
 	logic[32:0] zeroTest;
 	// assign the test bit to 1 to ensure that 1 & 1 = 1
 	assign zeroTest[0] = 1;
@@ -86,24 +78,15 @@ module ALU(a, b, ALUControl, Result, ALUFlags);
 			assign zeroTest[j+1] = zeroTest[j] & ~Result[j];
 		end
 	endgenerate
-	// Assign the Zero flag to the last state of the zero test
+	// the following sets the zero flag
 	assign ALUFlags[2] = zeroTest[32];
-	
-	// Assign the Carryout flag to be the logical and operation
-	// between the ALUConrol[0] state and the 32bit chain adders
-	// carryout state
-		// Abstract: If there was a mathematical operation
-		// that resulted in a carryout, raise this flag
+	// Set the carryout flag
 	assign ALUFlags[1] = (~ALUControl[1] & cout);
-	
-	// Assign the Overflow flag to be the logical and of the inverted ALUControl_1, XOR of the A_31 and
-	// the sum_31 bits, and the XNOR of the A_31, B_31, and ALUControl_0 bits.
+	// Set the negative flag
 	assign ALUFlags[0] = (~ALUControl[1] & ((a[31] & ~Result[31]) || (~a[31] & Result[31])) &
 					((~a[31] & ~b[31] & ~ALUControl[0]) | (a[31] & b[31] & ALUControl[0])));
 endmodule
-
-// A module to test the functionality of the ALU shown above, creates a module of the ALU and feeds it
-// test cases to ensure that it is working correctly
+// This module runs the ALU through the test cases.
 module ALU_testbench();
 	// set up logic variables
 	logic [31:0] A, B, Result;
