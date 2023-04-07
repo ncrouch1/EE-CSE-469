@@ -12,14 +12,59 @@
 # 
 # vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 13:15:32 on Apr 04,2023
+# Start time: 23:47:54 on Apr 06,2023
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv 
 # -- Compiling module ttLogic
-# ** Error: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv(15): The generate if condition must be a constant expression.
-# End time: 13:15:32 on Apr 04,2023, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-# ** Error: C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/vlog failed.
-# Error in macro ./DE1_SoC_run_msim_rtl_verilog.do line 8
-# C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/vlog failed.
-#     while executing
-# "vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv}"
+# -- Compiling module ttLogic_TB
+# 
+# Top level modules:
+# 	ttLogic_TB
+# End time: 23:47:55 on Apr 06,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:47:55 on Apr 06,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv 
+# -- Compiling module fullAdder
+# -- Compiling module fullAdder_testBench
+# 
+# Top level modules:
+# 	fullAdder_testBench
+# End time: 23:47:55 on Apr 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 23:47:55 on Apr 06,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv 
+# -- Compiling module ALU
+# -- Compiling module ALU_testbench
+# 
+# Top level modules:
+# 	ALU_testbench
+# End time: 23:47:55 on Apr 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim work.ALU_testbench
+# vsim work.ALU_testbench 
+# Start time: 23:48:28 on Apr 06,2023
+# Loading sv_std.std
+# Loading work.ALU_testbench
+# Loading work.ALU
+# Loading work.ttLogic
+# Loading work.fullAdder
+# ** Warning: (vsim-3839) C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv(126): Variable '/ALU_testbench/Result', driven via a port connection, is multiply driven. See C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv(120).
+#    Time: 0 ps  Iteration: 0  Instance: /ALU_testbench File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv
+# ** Warning: (vsim-3839) C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv(126): Variable '/ALU_testbench/ALUFlags', driven via a port connection, is multiply driven. See C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv(120).
+#    Time: 0 ps  Iteration: 0  Instance: /ALU_testbench File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv
+add wave -position end  sim:/ALU_testbench/A
+add wave -position end  sim:/ALU_testbench/B
+add wave -position end  sim:/ALU_testbench/Result
+add wave -position end  sim:/ALU_testbench/ALUControl
+add wave -position end  sim:/ALU_testbench/ALUFlags
+add wave -position end  sim:/ALU_testbench/clk
+run -all
+# ** Note: $stop    : C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv(128)
+#    Time: 1600 ps  Iteration: 1  Instance: /ALU_testbench
+# Break in NamedBeginStat Test_cases at C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv line 128
+# End time: 11:13:07 on Apr 07,2023, Elapsed time: 11:24:39
+# Errors: 0, Warnings: 2
