@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC
-Thu Apr 06 23:45:33 2023
+Fri Apr 07 17:04:57 2023
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -14,10 +14,9 @@ Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Multiplexer Restructuring Statistics (Restructuring Performed)
- 10. Post-Synthesis Netlist Statistics for Top Partition
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
+  9. Post-Synthesis Netlist Statistics for Top Partition
+ 10. Elapsed Time Per Partition
+ 11. Analysis & Synthesis Messages
 
 
 
@@ -44,14 +43,14 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Apr 06 23:45:33 2023       ;
+; Analysis & Synthesis Status     ; Successful - Fri Apr 07 17:04:57 2023       ;
 ; Quartus Prime Version           ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; DE1_SoC                                     ;
-; Top-level Entity Name           ; ALU                                         ;
+; Top-level Entity Name           ; fullAdder                                   ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
 ; Total registers                 ; 0                                           ;
-; Total pins                      ; 102                                         ;
+; Total pins                      ; 5                                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -70,7 +69,7 @@ agreement for further details.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
-; Top-level entity name                                                           ; ALU                ; DE1_SoC            ;
+; Top-level entity name                                                           ; fullAdder          ; DE1_SoC            ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; State Machine Processing                                                        ; User-Encoded       ; Auto               ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
@@ -172,72 +171,44 @@ agreement for further details.
 +----------------------------------+-----------------+------------------------------+-------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                          ; Library ;
 +----------------------------------+-----------------+------------------------------+-------------------------------------------------------+---------+
-; ttLogic.sv                       ; yes             ; User SystemVerilog HDL File  ; C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv   ;         ;
 ; fullAdder.sv                     ; yes             ; User SystemVerilog HDL File  ; C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv ;         ;
-; ALU.sv                           ; yes             ; User SystemVerilog HDL File  ; C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv       ;         ;
-; ALU.tv                           ; yes             ; User Unspecified File        ; C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.tv       ;         ;
 +----------------------------------+-----------------+------------------------------+-------------------------------------------------------+---------+
 
 
-+-------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                       ;
-+---------------------------------------------+---------------------+
-; Resource                                    ; Usage               ;
-+---------------------------------------------+---------------------+
-; Estimate of Logic utilization (ALMs needed) ; 75                  ;
-;                                             ;                     ;
-; Combinational ALUT usage for logic          ; 122                 ;
-;     -- 7 input functions                    ; 0                   ;
-;     -- 6 input functions                    ; 27                  ;
-;     -- 5 input functions                    ; 28                  ;
-;     -- 4 input functions                    ; 12                  ;
-;     -- <=3 input functions                  ; 55                  ;
-;                                             ;                     ;
-; Dedicated logic registers                   ; 0                   ;
-;                                             ;                     ;
-; I/O pins                                    ; 102                 ;
-;                                             ;                     ;
-; Total DSP Blocks                            ; 0                   ;
-;                                             ;                     ;
-; Maximum fan-out node                        ; ALUControl[0]~input ;
-; Maximum fan-out                             ; 68                  ;
-; Total fan-out                               ; 612                 ;
-; Average fan-out                             ; 1.88                ;
-+---------------------------------------------+---------------------+
++-------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary           ;
++---------------------------------------------+---------+
+; Resource                                    ; Usage   ;
++---------------------------------------------+---------+
+; Estimate of Logic utilization (ALMs needed) ; 1       ;
+;                                             ;         ;
+; Combinational ALUT usage for logic          ; 2       ;
+;     -- 7 input functions                    ; 0       ;
+;     -- 6 input functions                    ; 0       ;
+;     -- 5 input functions                    ; 0       ;
+;     -- 4 input functions                    ; 0       ;
+;     -- <=3 input functions                  ; 2       ;
+;                                             ;         ;
+; Dedicated logic registers                   ; 0       ;
+;                                             ;         ;
+; I/O pins                                    ; 5       ;
+;                                             ;         ;
+; Total DSP Blocks                            ; 0       ;
+;                                             ;         ;
+; Maximum fan-out node                        ; A~input ;
+; Maximum fan-out                             ; 2       ;
+; Total fan-out                               ; 13      ;
+; Average fan-out                             ; 1.08    ;
++---------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                   ;
-+----------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------+-------------+--------------+
-; Compilation Hierarchy Node       ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                          ; Entity Name ; Library Name ;
-+----------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------+-------------+--------------+
-; |ALU                             ; 122 (52)            ; 0 (0)                     ; 0                 ; 0          ; 102  ; 0            ; |ALU                                         ; ALU         ; work         ;
-;    |ttLogic:addsub|              ; 70 (27)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub                          ; ttLogic     ; work         ;
-;       |fullAdder:logi[10].adder| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[10].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[11].adder| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[11].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[13].adder| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[13].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[14].adder| ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[14].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[15].adder| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[15].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[16].adder| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[16].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[18].adder| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[18].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[19].adder| ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[19].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[1].adder|  ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[1].adder  ; fullAdder   ; work         ;
-;       |fullAdder:logi[20].adder| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[20].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[21].adder| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[21].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[23].adder| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[23].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[24].adder| ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[24].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[25].adder| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[25].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[26].adder| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[26].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[28].adder| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[28].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[29].adder| ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[29].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[31].adder| ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[31].adder ; fullAdder   ; work         ;
-;       |fullAdder:logi[3].adder|  ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[3].adder  ; fullAdder   ; work         ;
-;       |fullAdder:logi[4].adder|  ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[4].adder  ; fullAdder   ; work         ;
-;       |fullAdder:logi[5].adder|  ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[5].adder  ; fullAdder   ; work         ;
-;       |fullAdder:logi[6].adder|  ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[6].adder  ; fullAdder   ; work         ;
-;       |fullAdder:logi[8].adder|  ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[8].adder  ; fullAdder   ; work         ;
-;       |fullAdder:logi[9].adder|  ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |ALU|ttLogic:addsub|fullAdder:logi[9].adder  ; fullAdder   ; work         ;
-+----------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------+-------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
+; |fullAdder                 ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 5    ; 0            ; |fullAdder          ; fullAdder   ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -256,32 +227,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |ALU|Mux31                 ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-
-
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_lcell_comb     ; 123                         ;
-;     normal            ; 123                         ;
-;         1 data inputs ; 1                           ;
-;         2 data inputs ; 41                          ;
-;         3 data inputs ; 14                          ;
-;         4 data inputs ; 12                          ;
-;         5 data inputs ; 28                          ;
-;         6 data inputs ; 27                          ;
-; boundary_port         ; 102                         ;
+; arriav_lcell_comb     ; 2                           ;
+;     normal            ; 2                           ;
+;         3 data inputs ; 2                           ;
+; boundary_port         ; 5                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 15.00                       ;
-; Average LUT depth     ; 11.01                       ;
+; Max LUT depth         ; 1.00                        ;
+; Average LUT depth     ; 1.00                        ;
 +-----------------------+-----------------------------+
 
 
@@ -290,7 +247,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -300,38 +257,38 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Thu Apr 06 23:45:18 2023
+    Info: Processing started: Fri Apr 07 17:04:50 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC -c DE1_SoC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
 Info (12021): Found 2 design units, including 2 entities, in source file ttlogic.sv
-    Info (12023): Found entity 1: ttLogic File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 1
-    Info (12023): Found entity 2: ttLogic_TB File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 24
+    Info (12023): Found entity 1: ttLogic File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 8
+    Info (12023): Found entity 2: ttLogic_TB File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 36
 Info (12021): Found 1 design units, including 1 entities, in source file de1_soc_golden_top.v
     Info (12023): Found entity 1: DE1_SOC_golden_top File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/DE1_SOC_golden_top.v Line: 54
 Info (12021): Found 2 design units, including 2 entities, in source file reg_file.sv
     Info (12023): Found entity 1: reg_file File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/reg_file.sv Line: 2
     Info (12023): Found entity 2: reg_file_tb File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/reg_file.sv Line: 21
 Info (12021): Found 2 design units, including 2 entities, in source file fulladder.sv
-    Info (12023): Found entity 1: fullAdder File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv Line: 1
-    Info (12023): Found entity 2: fullAdder_testBench File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv Line: 11
+    Info (12023): Found entity 1: fullAdder File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv Line: 12
+    Info (12023): Found entity 2: fullAdder_testBench File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv Line: 29
 Info (12021): Found 2 design units, including 2 entities, in source file alu.sv
     Info (12023): Found entity 1: ALU File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 12
-    Info (12023): Found entity 2: ALU_testbench File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 104
-Info (12127): Elaborating entity "ALU" for the top level hierarchy
-Info (12128): Elaborating entity "ttLogic" for hierarchy "ttLogic:addsub" File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 31
-Info (12128): Elaborating entity "fullAdder" for hierarchy "ttLogic:addsub|fullAdder:logi[0].adder" File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 17
+    Info (12023): Found entity 2: ALU_testbench File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 90
+Info (12021): Found 1 design units, including 1 entities, in source file de1_soc.bdf
+    Info (12023): Found entity 1: DE1_SoC
+Info (12127): Elaborating entity "fullAdder" for the top level hierarchy
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 224 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 66 input pins
-    Info (21059): Implemented 36 output pins
-    Info (21061): Implemented 122 logic cells
+Info (21057): Implemented 7 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 2 output pins
+    Info (21061): Implemented 2 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4841 megabytes
-    Info: Processing ended: Thu Apr 06 23:45:33 2023
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:15
+    Info: Processing ended: Fri Apr 07 17:04:57 2023
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:05
 
 
