@@ -60,8 +60,8 @@ module arm (
     reg_file u_reg_file (
         .clk       (clk), 
         .wr_en     (MemWrite),
-        .write_data(WriteData),
-        .write_addr(),
+        .write_data(Result),
+        .write_addr(Instr[15:12]),
         .read_addr1(RA1), 
         .read_addr2(RA2),
         .read_data1(RD1), 
