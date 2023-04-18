@@ -30,6 +30,7 @@ module arm (
     // control signals
     logic PCSrc, MemtoReg, ALUSrc, RegWrite;
     logic [1:0] RegSrc, ImmSrc, ALUControl;
+	 	 
 	 
     /* The datapath consists of a PC as well as a series of muxes to make decisions about which data words to pass forward and operate on. It is 
     ** noticeably missing the register file and alu, which you will fill in using the modules made in lab 1. To correctly match up signals to the 
@@ -54,6 +55,7 @@ module arm (
     // RefSrc[1] is set when doing memory instructions
     assign RA1 = RegSrc[0] ? 4'd15        : Instr[19:16];
     assign RA2 = RegSrc[1] ? Instr[15:12] : Instr[ 3: 0];
+	 assign WA = Instr[15:12];
 
     // TODO: insert your reg file here
     // TODO: instantiation comment
@@ -61,7 +63,7 @@ module arm (
         .clk       (clk), 
         .wr_en     (MemWrite),
         .write_data(Result),
-        .write_addr(Instr[15:12]),
+        .write_addr(WA),
         .read_addr1(RA1), 
         .read_addr2(RA2),
         .read_data1(RD1), 

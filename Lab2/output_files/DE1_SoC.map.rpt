@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC
-Mon Apr 17 11:19:25 2023
+Mon Apr 17 16:33:52 2023
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ agreement for further details.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Mon Apr 17 11:19:25 2023           ;
+; Analysis & Synthesis Status ; Failed - Mon Apr 17 16:33:52 2023           ;
 ; Quartus Prime Version       ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name               ; DE1_SoC                                     ;
 ; Top-level Entity Name       ; top                                         ;
@@ -161,7 +161,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Mon Apr 17 11:19:10 2023
+    Info: Processing started: Mon Apr 17 16:33:44 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC -c DE1_SoC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -189,16 +189,11 @@ Info (12021): Found 1 design units, including 1 entities, in source file arm.sv
     Info (12023): Found entity 1: arm File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 13
 Info (12021): Found 1 design units, including 1 entities, in source file de1_soc_golden_top.v
     Info (12023): Found entity 1: DE1_SOC_golden_top File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/DE1_SOC_golden_top.v Line: 54
+Warning (10236): Verilog HDL Implicit Net warning at arm.sv(58): created implicit net for "WA" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 58
 Info (12127): Elaborating entity "top" for the top level hierarchy
 Info (12128): Elaborating entity "arm" for hierarchy "arm:processor" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv Line: 30
-Warning (10858): Verilog HDL warning at arm.sv(25): object RD1 used but never assigned File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 25
-Warning (10858): Verilog HDL warning at arm.sv(25): object RD2 used but never assigned File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 25
-Warning (10036): Verilog HDL or VHDL warning at arm.sv(27): object "SrcA" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 27
-Warning (10036): Verilog HDL or VHDL warning at arm.sv(27): object "SrcB" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 27
 Warning (10036): Verilog HDL or VHDL warning at arm.sv(31): object "RegWrite" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 31
-Warning (10036): Verilog HDL or VHDL warning at arm.sv(32): object "ALUControl" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 32
-Warning (10030): Net "ALUResult" at arm.sv(18) has no driver or initial value, using a default initial value '0' File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 18
-Warning (10030): Net "RD2" at arm.sv(25) has no driver or initial value, using a default initial value '0' File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 25
+Warning (10230): Verilog HDL assignment warning at arm.sv(58): truncated value with size 4 to match size of target (1) File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 58
 Info (12128): Elaborating entity "reg_file" for hierarchy "arm:processor|reg_file:u_reg_file" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 71
 Info (12128): Elaborating entity "ALU" for hierarchy "arm:processor|ALU:u_alu" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 94
 Info (12128): Elaborating entity "ttLogic" for hierarchy "arm:processor|ALU:u_alu|ttLogic:addsub" File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 31
@@ -206,10 +201,10 @@ Info (12128): Elaborating entity "fullAdder" for hierarchy "arm:processor|ALU:u_
 Info (12128): Elaborating entity "imem" for hierarchy "imem:imemory" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv Line: 38
 Error (10170): Verilog HDL syntax error at memfile.dat(12) near text: _. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/memfile.dat Line: 12
 Error (12152): Can't elaborate user hierarchy "imem:imemory" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv Line: 38
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 9 warnings
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 4 warnings
     Error: Peak virtual memory: 4775 megabytes
-    Error: Processing ended: Mon Apr 17 11:19:25 2023
-    Error: Elapsed time: 00:00:15
-    Error: Total CPU time (on all processors): 00:00:12
+    Error: Processing ended: Mon Apr 17 16:33:52 2023
+    Error: Elapsed time: 00:00:08
+    Error: Total CPU time (on all processors): 00:00:04
 
 
