@@ -55,7 +55,6 @@ module arm (
     // RefSrc[1] is set when doing memory instructions
     assign RA1 = RegSrc[0] ? 4'd15        : Instr[19:16];
     assign RA2 = RegSrc[1] ? Instr[15:12] : Instr[ 3: 0];
-	 assign WA = Instr[15:12];
 
     // TODO: insert your reg file here
     // TODO: instantiation comment
@@ -63,7 +62,7 @@ module arm (
         .clk       (clk), 
         .wr_en     (MemWrite),
         .write_data(Result),
-        .write_addr(WA),
+        .write_addr(Instr[15:12]),
         .read_addr1(RA1), 
         .read_addr2(RA2),
         .read_data1(RD1), 

@@ -1,0 +1,126 @@
+# Reading C:/intelFPGA_lite/17.0/modelsim_ase/tcl/vsim/pref.tcl
+# do DE1_SoC_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/reg_file.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:35:10 on Apr 19,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/reg_file.sv 
+# -- Compiling module reg_file
+# -- Compiling module reg_file_tb
+# 
+# Top level modules:
+# 	reg_file_tb
+# End time: 11:35:10 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:35:10 on Apr 19,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv 
+# -- Compiling module fullAdder
+# -- Compiling module fullAdder_testBench
+# 
+# Top level modules:
+# 	fullAdder_testBench
+# End time: 11:35:10 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:35:10 on Apr 19,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv 
+# -- Compiling module ttLogic
+# -- Compiling module ttLogic_TB
+# 
+# Top level modules:
+# 	ttLogic_TB
+# End time: 11:35:10 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2 {C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:35:10 on Apr 19,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2" C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv 
+# -- Compiling module top
+# -- Compiling module testbench2
+# 
+# Top level modules:
+# 	testbench2
+# End time: 11:35:11 on Apr 19,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2 {C:/Users/noah-/Documents/EE-CSE-469/Lab2/dmem.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:35:11 on Apr 19,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2" C:/Users/noah-/Documents/EE-CSE-469/Lab2/dmem.sv 
+# -- Compiling module dmem
+# 
+# Top level modules:
+# 	dmem
+# End time: 11:35:11 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2 {C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:35:11 on Apr 19,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2" C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv 
+# -- Compiling module arm
+# 
+# Top level modules:
+# 	arm
+# End time: 11:35:11 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:35:11 on Apr 19,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv 
+# -- Compiling module ALU
+# -- Compiling module ALU_testbench
+# 
+# Top level modules:
+# 	ALU_testbench
+# End time: 11:35:11 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2 {C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 11:35:11 on Apr 19,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2" C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv 
+# -- Compiling module imem
+# 
+# Top level modules:
+# 	imem
+# End time: 11:35:11 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim work.testbench2
+# vsim work.testbench2 
+# Start time: 11:35:44 on Apr 19,2023
+# Loading sv_std.std
+# Loading work.testbench2
+# Loading work.top
+# Loading work.arm
+# Loading work.reg_file
+# Loading work.ALU
+# Loading work.ttLogic
+# Loading work.imem
+# Loading work.dmem
+# Loading work.fullAdder
+add wave -position end  sim:/testbench2/cpu/clk
+add wave -position end  sim:/testbench2/cpu/rst
+add wave -position end  sim:/testbench2/cpu/Instr
+add wave -position end  sim:/testbench2/cpu/ReadData
+add wave -position end  sim:/testbench2/cpu/WriteData
+add wave -position end  sim:/testbench2/cpu/PC
+add wave -position end  sim:/testbench2/cpu/ALUResult
+add wave -position end  sim:/testbench2/cpu/MemWrite
+run -all
+# Task 1 Failed
+# ** Note: $stop    : C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv(95)
+#    Time: 5200 ps  Iteration: 1  Instance: /testbench2
+# Break in Module testbench2 at C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv line 95
+# End time: 11:39:30 on Apr 19,2023, Elapsed time: 0:03:46
+# Errors: 0, Warnings: 0

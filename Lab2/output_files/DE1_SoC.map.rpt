@@ -1,5 +1,5 @@
-Analysis & Synthesis report for DE1_SoC
-Mon Apr 17 16:33:52 2023
+Analysis & Elaboration report for DE1_SoC
+Wed Apr 19 11:32:46 2023
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -7,10 +7,11 @@ Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Synthesis Summary
-  3. Analysis & Synthesis Settings
-  4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Analysis & Elaboration Settings
+  5. Port Connectivity Checks: "arm:processor|ALU:u_alu"
+  6. Analysis & Elaboration Messages
 
 
 
@@ -34,26 +35,42 @@ agreement for further details.
 
 
 
-+---------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                              ;
-+-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Mon Apr 17 16:33:52 2023           ;
-; Quartus Prime Version       ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
-; Revision Name               ; DE1_SoC                                     ;
-; Top-level Entity Name       ; top                                         ;
-; Family                      ; Cyclone V                                   ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++-----------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                              ;
++-------------------------------+---------------------------------------------+
+; Analysis & Elaboration Status ; Successful - Wed Apr 19 11:32:46 2023       ;
+; Quartus Prime Version         ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
+; Revision Name                 ; DE1_SoC                                     ;
+; Top-level Entity Name         ; top                                         ;
+; Family                        ; Cyclone V                                   ;
+; Logic utilization (in ALMs)   ; N/A until Partition Merge                   ;
+; Total registers               ; N/A until Partition Merge                   ;
+; Total pins                    ; N/A until Partition Merge                   ;
+; Total virtual pins            ; N/A until Partition Merge                   ;
+; Total block memory bits       ; N/A until Partition Merge                   ;
+; Total PLLs                    ; N/A until Partition Merge                   ;
+; Total DLLs                    ; N/A until Partition Merge                   ;
++-------------------------------+---------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 12          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Settings                                                                                             ;
+; Analysis & Elaboration Settings                                                                                           ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
@@ -139,30 +156,23 @@ agreement for further details.
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 16          ;
-; Maximum allowed            ; 12          ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-+----------------------------+-------------+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "arm:processor|ALU:u_alu"                                                                ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; ALUFlags ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-------------------------------+
-; Analysis & Synthesis Messages ;
-+-------------------------------+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Synthesis
+Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Mon Apr 17 16:33:44 2023
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC -c DE1_SoC
+    Info: Processing started: Wed Apr 19 11:32:30 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC -c DE1_SoC --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
 Info (12021): Found 2 design units, including 2 entities, in source file /users/noah-/documents/ee-cse-469/lab1/reg_file.sv
@@ -177,8 +187,9 @@ Info (12021): Found 2 design units, including 2 entities, in source file /users/
 Info (12021): Found 2 design units, including 2 entities, in source file /users/noah-/documents/ee-cse-469/lab1/alu.sv
     Info (12023): Found entity 1: ALU File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 12
     Info (12023): Found entity 2: ALU_testbench File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 90
-Info (12021): Found 1 design units, including 1 entities, in source file top.sv
+Info (12021): Found 2 design units, including 2 entities, in source file top.sv
     Info (12023): Found entity 1: top File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv Line: 9
+    Info (12023): Found entity 2: testbench2 File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv Line: 57
 Info (12021): Found 1 design units, including 1 entities, in source file testbench.sv
     Info (12023): Found entity 1: testbench File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/testbench.sv Line: 5
 Info (12021): Found 1 design units, including 1 entities, in source file imem.sv
@@ -189,22 +200,23 @@ Info (12021): Found 1 design units, including 1 entities, in source file arm.sv
     Info (12023): Found entity 1: arm File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 13
 Info (12021): Found 1 design units, including 1 entities, in source file de1_soc_golden_top.v
     Info (12023): Found entity 1: DE1_SOC_golden_top File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/DE1_SOC_golden_top.v Line: 54
-Warning (10236): Verilog HDL Implicit Net warning at arm.sv(58): created implicit net for "WA" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 58
 Info (12127): Elaborating entity "top" for the top level hierarchy
 Info (12128): Elaborating entity "arm" for hierarchy "arm:processor" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv Line: 30
 Warning (10036): Verilog HDL or VHDL warning at arm.sv(31): object "RegWrite" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 31
-Warning (10230): Verilog HDL assignment warning at arm.sv(58): truncated value with size 4 to match size of target (1) File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 58
-Info (12128): Elaborating entity "reg_file" for hierarchy "arm:processor|reg_file:u_reg_file" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 71
-Info (12128): Elaborating entity "ALU" for hierarchy "arm:processor|ALU:u_alu" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 94
+Info (12128): Elaborating entity "reg_file" for hierarchy "arm:processor|reg_file:u_reg_file" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 70
+Info (12128): Elaborating entity "ALU" for hierarchy "arm:processor|ALU:u_alu" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv Line: 93
 Info (12128): Elaborating entity "ttLogic" for hierarchy "arm:processor|ALU:u_alu|ttLogic:addsub" File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv Line: 31
 Info (12128): Elaborating entity "fullAdder" for hierarchy "arm:processor|ALU:u_alu|ttLogic:addsub|fullAdder:logi[0].adder" File: C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv Line: 28
 Info (12128): Elaborating entity "imem" for hierarchy "imem:imemory" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv Line: 38
-Error (10170): Verilog HDL syntax error at memfile.dat(12) near text: _. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/memfile.dat Line: 12
-Error (12152): Can't elaborate user hierarchy "imem:imemory" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv Line: 38
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 4 warnings
-    Error: Peak virtual memory: 4775 megabytes
-    Error: Processing ended: Mon Apr 17 16:33:52 2023
-    Error: Elapsed time: 00:00:08
-    Error: Total CPU time (on all processors): 00:00:04
+Warning (10850): Verilog HDL warning at imem.sv(22): number of words (14) in memory file does not match the number of elements in the address range [0:63] File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv Line: 22
+Warning (10030): Net "memory.data_a" at imem.sv(19) has no driver or initial value, using a default initial value '0' File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv Line: 19
+Warning (10030): Net "memory.waddr_a" at imem.sv(19) has no driver or initial value, using a default initial value '0' File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv Line: 19
+Warning (10030): Net "memory.we_a" at imem.sv(19) has no driver or initial value, using a default initial value '0' File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv Line: 19
+Info (12128): Elaborating entity "dmem" for hierarchy "dmem:dmemory" File: C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv Line: 48
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 4779 megabytes
+    Info: Processing ended: Wed Apr 19 11:32:46 2023
+    Info: Elapsed time: 00:00:16
+    Info: Total CPU time (on all processors): 00:00:12
 
 

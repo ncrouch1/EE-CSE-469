@@ -8,10 +8,15 @@ module testbench();
     logic clk, rst;
 
     // generate clock with 100ps clk period 
-    initial begin
-        clk = '1;
-        forever #50 clk = ~clk;
-    end
+	 // Set up clk
+	parameter clock_period = 100;
+	
+	// oscillate clk
+	initial clk = 1;
+	always begin
+		#(clock_period/2);
+		clk = ~clk;
+	end
 
     // processor instantion. Within is the processor as well as imem and dmem
     top cpu (.clk(clk), .rst(rst));
@@ -38,4 +43,4 @@ module testbench();
         $stop;
     end
 
-endmodule
+endmodule 
