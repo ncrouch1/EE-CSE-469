@@ -60,7 +60,7 @@ module arm (
     // TODO: instantiation comment
     reg_file u_reg_file (
         .clk       (clk), 
-        .wr_en     (MemWrite),
+        .wr_en     (RegWrite),
         .write_data(Result),
         .write_addr(Instr[15:12]),
         .read_addr1(RA1), 
@@ -117,10 +117,11 @@ module arm (
                 RegSrc   = 'b00;
                 ImmSrc   = 'b00; 
                 ALUControl = 'b00;
+					 FlagWrite = 1'b0;
             end
 
             // SUB (Imm or Reg)
-            8'b00?_0010_0 : begin   // note that we use wildcard "?" in bit 25. That bit decides whether we use immediate or reg, but regardless we sub
+            8'b00?_0010_? : begin   // note that we use wildcard "?" in bit 25. That bit decides whether we use immediate or reg, but regardless we sub
                 PCSrc    = 0; 
                 MemtoReg = 0; 
                 MemWrite = 0; 
@@ -129,6 +130,7 @@ module arm (
                 RegSrc   = 'b00;
                 ImmSrc   = 'b00; 
                 ALUControl = 'b01;
+					 FlagWrite   = Instr[20];
             end
 
             // AND
@@ -141,6 +143,7 @@ module arm (
                 RegSrc   = 'b00;
                 ImmSrc   = 'b00;    // doesn't matter
                 ALUControl = 'b10;  
+					 FlagWrite = 1'b0;
             end
 
             // ORR
@@ -153,6 +156,7 @@ module arm (
                 RegSrc   = 'b00;
                 ImmSrc   = 'b00;    // doesn't matter
                 ALUControl = 'b11;
+					 FlagWrite = 1'b0;
             end
 
             // LDR
@@ -165,6 +169,7 @@ module arm (
                 RegSrc   = 'b10;    // msb doesn't matter
                 ImmSrc   = 'b01; 
                 ALUControl = 'b00;  // do an add
+					 FlagWrite = 1'b0;
             end
 
             // STR
@@ -177,18 +182,20 @@ module arm (
                 RegSrc   = 'b10;    // msb doesn't matter
                 ImmSrc   = 'b01; 
                 ALUControl = 'b00;  // do an add
+					 FlagWrite = 1'b0;
             end
 
-            // B
+            // B with conditions
             8'b1010_???? : begin
-                    PCSrc    = 1; 
+                    PCSrc    = CondTrue; 
                     MemtoReg = 0;
                     MemWrite = 0; 
                     ALUSrc   = 1;
-                    RegWrite = 0;
+                    RegWrite = CondTrue;
                     RegSrc   = 'b01;
                     ImmSrc   = 'b10; 
                     ALUControl = 'b00;  // do an add
+						  FlagWrite = 1'b0;
             end
 
 			default: begin
@@ -200,9 +207,45 @@ module arm (
                     RegSrc   = 'b00;
                     ImmSrc   = 'b00; 
                     ALUControl = 'b00;  // do an add
+						  FlagWrite = 1'b0;
 			end
         endcase
     end
-
+	 
+	// FlagsReg holds our ALU Flags for later use 
+	logic FlagWrite;
+	logic [3:0] StoredFlags;
+	FlagsReg flgreg (ALUFlags, FlagWrite, clk, StoredFlags);
+	
+	logic CondTrue; // Is 1 when cond is satisfied 
+	// This controls the  
+	always_comb begin
+		case (Instr[31:28]) 
+			4'b1110 : CondTrue = 1; // unconditional
+			4'b0000 : begin // equal
+				CondTrue = StoredFlags[2]; 
+			end
+			4'b0001 : begin // not equal
+				CondTrue = ~StoredFlags[2];
+			end
+			4'b1010 : begin // greater or equal
+				CondTrue = ~StoredFlags[3];
+			end
+			4'b1100 : begin // greater
+				CondTrue = ~StoredFlags[3] & ~StoredFlags[2];
+			end
+			4'b1101 : begin // less or equal
+				CondTrue = StoredFlags[3] | StoredFlags[2];
+			end
+			4'b1011 : begin // less
+				CondTrue = StoredFlags[3];
+			end
+			default : begin
+				CondTrue = 1'b0;
+			end
+		endcase
+	end
+	
+	
 
 endmodule 
