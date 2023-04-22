@@ -30,6 +30,14 @@ module arm (
     // control signals
     logic PCSrc, MemtoReg, ALUSrc, RegWrite;
     logic [1:0] RegSrc, ImmSrc, ALUControl;
+	 // This signal is true when we need to save the ALU flag outputs
+	 logic FlagWrite;
+	 // This is the stored Flags
+	 logic [3:0] StoredFlags;
+	
+	 // This is 1 when the Condition is true with the flags from the previous clock cycle
+	 // it is set via the 
+	logic CondTrue; // Is 1 when cond is satisfied 
 	 	 
 	 
     /* The datapath consists of a PC as well as a series of muxes to make decisions about which data words to pass forward and operate on. It is 
@@ -213,13 +221,11 @@ module arm (
     end
 	 
 	// FlagsReg holds our ALU Flags for later use 
-	logic FlagWrite;
-	logic [3:0] StoredFlags;
+	
+	// This Module holds the flags for use in the next clock cycle
 	FlagsReg flgreg (ALUFlags, FlagWrite, clk, StoredFlags);
 	
-	logic CondTrue; // Is 1 when cond is satisfied 
-	// This controls the  
-	always_comb begin
+	always_comb begin // Determine if condition is true via saved ALU Flags
 		case (Instr[31:28]) 
 			4'b1110 : CondTrue = 1; // unconditional
 			4'b0000 : begin // equal
