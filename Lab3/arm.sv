@@ -20,7 +20,7 @@ module arm (
 );
 
     // datapath buses and signals
-    logic [31:0] InstrD, PCPrime, PCPlus4F, PCPlus8D; // pc signals
+    logic [31:0] InstrD, PCPrime, PCPrimePrime, PCPlus4F, PCPlus8D; // pc signals
     logic [ 3:0] RA1D, RA2D;                  // regfile input addresses
     logic [31:0] RD1, RD2;                  // raw regfile outputs
     logic [ 3:0] ALUFlags;                  // alu combinational flag outputs
@@ -28,8 +28,8 @@ module arm (
     logic [31:0] ResultW;                    // computed or fetched value to be written into regfile or pc
 	logic [31:0] ALUOutM, ALUOutW;
     // control signals
-    logic BranchD, PCSrcD, MemtoRegD, ALUSrcD, RegWriteD;
-	logic BranchE, PCSrcE, MemtoRegE, MemWriteE, ALUSrcE, RegWriteE;
+    logic BranchD, PCSrcD, MemToRegD, ALUSrcD, RegWriteD;
+	logic BranchE, PCSrcE, MemToRegE, MemWriteE, ALUSrcE, RegWriteE;
 	logic PCSrcM, MemtoRegM, MemWriteM, RegWriteM;
 	logic PCSrcW, MemtoRegW, RegWriteW;
 	logic [1:0] RegSrcD, ImmSrcD, ALUControlD;
@@ -37,15 +37,20 @@ module arm (
 	// This signal is true when we need to save the ALU flag outputs
 	logic FlagWriteD, FlagWriteE;
 	// This is the stored Flags
-	logic [3:0] StoredFlags, StoredFlagsE;
-	 
+	logic [3:0] FlagsPrime, FlagsE, CondE;
+	
+    logic StallD, StallF, FlushD, FlushE;
+    logic [1:0] ForwardAE, ForwardBE;
 	 
 	logic [3:0] WA3E, WA3M, WA3W;
 	
 	// This is 1 when the Condition is true with the flags from the previous clock cycle
 	// it is set via the 
-	logic CondTrue; // Is 1 when cond is satisfied 
-	 	 
+	logic CondExE; // Is 1 when cond is satisfied 
+
+
+    hazardmodule hz (RA1E, RA2E, WA3M, WA3W, RA1D, RA2D, WA2E, PCSrcD, PCSrcE, PCSrcM, PCSrcW, RegWriteM,
+        RegWriteW, RegWriteE, BranchTakenE, StallF, StallD, FlushD, FlushE, ForwardAE, ForwardBE);
 	 
     /* The datapath consists of a PC as well as a series of muxes to make decisions about which data words to pass forward and operate on. It is 
     ** noticeably missing the register file and alu, which you will fill in using the modules made in lab 1. To correctly match up signals to the 
@@ -55,18 +60,25 @@ module arm (
     //                                      DATAPATH
     //-------------------------------------------------------------------------------
 
-    assign PCPrime = PCSrcD ? ResultW : PCPlus4F;  // mux, use either default or newly computed value
-    assign PCPlus4 = PC + 'd4;                  // default value to access next instruction
-    assign PCPlus8 = PCPlus4F + 'd4;             // value read when reading from reg[15]
+    assign PCPrimePrime = PCSrcD ? ResultW : PCPlus4F;  // mux, use either default or newly computed value
+    assign PCPrime = BranchTakenE ? ALUResultE : PCPrimePrime;
+    assign PCPlus4F = PCF + 'd4;                  // default value to access next instruction
+    assign PCPlus8D = PCPlus4F;             // value read when reading from reg[15]
 
     // update the PC, at rst initialize to 0
     always_ff @(posedge clk) begin
-        if (rst) PC <= '0;
-        else     PC <= PCPrime;
+        if (rst) PCF <= '0;
+        else if (~StallF) 
+            PCF <= PCPrime; 
     end
 	 
 	always_ff @(posedge clk) begin
-	  IntrD <= IntrF;
+        if (~StallD) begin
+            InstrD <= InstrF;
+        end 
+        else if (FlushD) begin 
+            InstrD <= '0;
+        end
 	end
 
     // determine the register addresses based on control signals
@@ -91,17 +103,60 @@ module arm (
     // two muxes, put together into an always_comb for clarity
     // determines which set of instruction bits are used for the immediate
     always_ff @(posedge clk) begin
-        if      (ImmSrcD == 'b00) ExtImmE = {{24{InstrD[7]}},InstrD[7:0]};          // 8 bit immediate - reg operations
+        if (FlushE) begin 
+            ExtImmE = '0;
+            WA3E <= '0;
+            PCSrcE <= '0;
+            MemtoRegE <= '0;
+            MemWriteE <= '0;
+            RegWriteE <= '0;
+            BranchE <= '0;
+            ALUControlE <= '0;
+            ALUSrcE <= '0;
+            FlagsE <= '0;
+            FlagWriteE <= '0;
+            CondE <= '0;
+            RD1 <= '0;
+            RD2 <= '0;
+        end 
+		  else if (~FlushE) begin
+            WA3E <= InstrD[15:12];
+            PCSrcE <= PCSrcD;
+            MemToRegE <= MemToRegD;
+            MemWriteE <= MemWriteD;
+            RegWriteE <= RegWriteD;
+            BranchE <= BranchD;
+            ALUControlE <= ALUControlD;
+            ALUSrcE <= ALUSrcD;
+            FlagsE <= FlagsPrime;
+            CondE <= InstrD[31:28];
+        end
+        else if      (ImmSrcD == 'b00) ExtImmE = {{24{InstrD[7]}},InstrD[7:0]};          // 8 bit immediate - reg operations
         else if (ImmSrcD == 'b01) ExtImmE = {20'b0, InstrD[11:0]};                 // 12 bit immediate - mem operations
         else                     ExtImmE = {{6{InstrD[23]}}, InstrD[23:0], 2'b00}; // 24 bit immediate - branch operation
-	end
-	 
+    end
+	
 	 
 
     // WriteData and SrcA are direct outputs of the register file, wheras SrcB is chosen between reg file output and the immediate
-    assign WriteData = (RA2 == 'd15) ? PCPlus8D : RD2;           // substitute the 15th regfile register for PC 
-    assign SrcA      = (RA1 == 'd15) ? PCPlus8D : RD1;           // substitute the 15th regfile register for PC 
-    assign SrcB      = ALUSrc        ? ExtImmE  : WriteDataE;     // determine alu operand to be either from reg file or from immediate
+    assign WriteDataE = (RA2 == 'd15) ? PCPlus8D : RD2;           // substitute the 15th regfile register for PC 
+    
+    // SrcAE muxes
+    always_comb begin
+        case(ForwardAE) begin
+            2'b00 : SrcAE <= RD1;
+            2'b01 : SrcAE <= ResultW;
+            2'b10 : SrcAE <= ALUOutM;
+        end
+    end
+    // SrcBE Muxes
+    always_comb begin
+        case(ForwardBE) begin
+            2'b00 : SrcBE <= RD2;
+            2'b01 : SrcBE <= ResultW;
+            2'b10 : SrcBE <= ALUOutM;
+        end
+    end
 
     // TODO: insert your alu here
     // TODO: instantiation comment
@@ -114,8 +169,26 @@ module arm (
     );
 
     // determine the result to run back to PC or the register file based on whether we used a memory instruction
-    assign Result = MemtoReg ? ReadData : ALUResult;    // determine whether final writeback result is from dmemory or alu
+    assign ResultW = MemToRegW ? ReadDataW : ALUOutW;    // determine whether final writeback result is from dmemory or alu
 
+    always_ff @(posedge clk) begin
+        WA3M <= WA3E;
+        if (CondExE) begin
+            PCSrcM <= PCSrcE;
+            RegWriteM <= RegWriteE;
+            MemWriteM <= MemWriteE;
+            MemToRegM <= MemToRegE;
+        end
+        ALUOutM <= ALUResultE;
+    end
+
+    always_ff @(posedge clk) begin
+        WA3W <= WA3M;
+        PCSrcW <= PCSrcM;
+        RegWriteW <= RegWriteE;
+        MemWriteM <= MemWriteE;
+        ALUOutW <= ALUOutM;
+    end
 
     /* The control conists of a large decoder, which evaluates the top bits of the instruction and produces the control bits 
     ** which become the select bits and write enables of the system. The write enables (RegWrite, MemWrite and PCSrc) are 
@@ -126,109 +199,109 @@ module arm (
     //-------------------------------------------------------------------------------
     
     always_comb begin
-        casez (Instr[27:20])
+        casez (InstrD[27:20])
 
             // ADD (Imm or Reg)
             8'b00?_0100_0 : begin   // note that we use wildcard "?" in bit 25. That bit decides whether we use immediate or reg, but regardless we add
-                PCSrc    = 0;
-                MemtoReg = 0; 
-                MemWrite = 0; 
-                ALUSrc   = InstrD[25]; // may use immediate
-                RegWrite = 1;
-                RegSrc   = 'b00;
-                ImmSrc   = 'b00; 
-                ALUControl = 'b00;
-					 FlagWrite = 1'b0;
+                PCSrcD    = 0;
+                MemtoRegD = 0; 
+                MemWriteD = 0; 
+                ALUSrcD   = InstrD[25]; // may use immediate
+                RegWriteD = 1;
+                RegSrcD   = 'b00;
+                ImmSrcD   = 'b00; 
+                ALUControlD = 'b00;
+				FlagWriteD = 1'b0;
             end
 
             // SUB (Imm or Reg)
             8'b00?_0010_? : begin   // note that we use wildcard "?" in bit 25. That bit decides whether we use immediate or reg, but regardless we sub
-                PCSrc    = 0; 
-                MemtoReg = 0; 
-                MemWrite = 0; 
-                ALUSrc   = InstrD[25]; // may use immediate
-                RegWrite = 1;
-                RegSrc   = 'b00;
-                ImmSrc   = 'b00; 
-                ALUControl = 'b01;
-					 FlagWrite   = Instr[20];
+                PCSrcD    = 0; 
+                MemToRegD = 0; 
+                MemWriteD = 0; 
+                ALUSrcD   = InstrD[25]; // may use immediate
+                RegWriteD = 1;
+                RegSrcD   = 'b00;
+                ImmSrcD   = 'b00; 
+                ALUControlD = 'b01;
+			    FlagWriteD   = Instr[20];
             end
 
             // AND
             8'b000_0000_0 : begin
-                PCSrc    = 0; 
-                MemtoReg = 0; 
-                MemWrite = 0; 
-                ALUSrc   = 0; 
-                RegWrite = 1;
-                RegSrc   = 'b00;
-                ImmSrc   = 'b00;    // doesn't matter
-                ALUControl = 'b10;  
-					 FlagWrite = 1'b0;
+                PCSrcD    = 0; 
+                MemToRegD = 0; 
+                MemWriteD = 0; 
+                ALUSrcD   = 0; 
+                RegWriteD = 1;
+                RegSrcD   = 'b00;
+                ImmSrcD   = 'b00;    // doesn't matter
+                ALUControlD = 'b10;  
+				FlagWriteD = 1'b0;
             end
 
             // ORR
             8'b000_1100_0 : begin
-                PCSrc    = 0; 
-                MemtoReg = 0; 
-                MemWrite = 0; 
-                ALUSrc   = 0; 
-                RegWrite = 1;
-                RegSrc   = 'b00;
-                ImmSrc   = 'b00;    // doesn't matter
-                ALUControl = 'b11;
-					 FlagWrite = 1'b0;
+                PCSrcD    = 0; 
+                MemToRegD = 0; 
+                MemWriteD = 0; 
+                ALUSrcD   = 0; 
+                RegWriteD = 1;
+                RegSrcD   = 'b00;
+                ImmSrcD   = 'b00;    // doesn't matter
+                ALUControlD = 'b11;
+				FlagWriteD = 1'b0;
             end
 
             // LDR
             8'b010_1100_1 : begin
-                PCSrc    = 0; 
-                MemtoReg = 1; 
-                MemWrite = 0; 
-                ALUSrc   = 1;
-                RegWrite = 1;
-                RegSrc   = 'b10;    // msb doesn't matter
-                ImmSrc   = 'b01; 
-                ALUControl = 'b00;  // do an add
-					 FlagWrite = 1'b0;
+                PCSrcD    = 0; 
+                MemToRegD = 1; 
+                MemWriteD = 0; 
+                ALUSrcD   = 1;
+                RegWriteD = 1;
+                RegSrcD   = 'b10;    // msb doesn't matter
+                ImmSrcD   = 'b01; 
+                ALUControlD = 'b00;  // do an add
+				FlagWriteD = 1'b0;
             end
 
             // STR
             8'b010_1100_0 : begin
-                PCSrc    = 0; 
-                MemtoReg = 0; // doesn't matter
-                MemWrite = 1; 
-                ALUSrc   = 1;
-                RegWrite = 0;
-                RegSrc   = 'b10;    // msb doesn't matter
-                ImmSrc   = 'b01; 
-                ALUControl = 'b00;  // do an add
-					 FlagWrite = 1'b0;
+                PCSrcD    = 0; 
+                MemToRegD = 0; // doesn't matter
+                MemWriteD = 1; 
+                ALUSrcD   = 1;
+                RegWriteD = 0;
+                RegSrcD   = 'b10;    // msb doesn't matter
+                ImmSrcD   = 'b01; 
+                ALUControlD = 'b00;  // do an add
+				FlagWriteD = 1'b0;
             end
 
             // B with conditions
             8'b1010_???? : begin
-                    PCSrc    = CondTrue; 
-                    MemtoReg = 0;
-                    MemWrite = 0; 
-                    ALUSrc   = 1;
-                    RegWrite = CondTrue;
-                    RegSrc   = 'b01;
-                    ImmSrc   = 'b10; 
-                    ALUControl = 'b00;  // do an add
-						  FlagWrite = 1'b0;
+                    PCSrcD    = CondExE; 
+                    MemToRegD = 0;
+                    MemWriteD = 0; 
+                    ALUSrcD   = 1;
+                    RegWriteD = CondExE;
+                    RegSrcD   = 'b01;
+                    ImmSrcD   = 'b10; 
+                    ALUControlD = 'b00;  // do an add
+					FlagWriteD = 1'b0;
             end
 
 			default: begin
-					PCSrc    = 0; 
-                    MemtoReg = 0; // doesn't matter
-                    MemWrite = 0; 
-                    ALUSrc   = 0;
-                    RegWrite = 0;
-                    RegSrc   = 'b00;
-                    ImmSrc   = 'b00; 
-                    ALUControl = 'b00;  // do an add
-						  FlagWrite = 1'b0;
+					PCSrcD    = 0; 
+                    MemToRegD = 0; // doesn't matter
+                    MemWriteD = 0; 
+                    ALUSrcD   = 0;
+                    RegWriteD = 0;
+                    RegSrcD   = 'b00;
+                    ImmSrcD   = 'b00; 
+                    ALUControlD = 'b00;  // do an add
+					FlagWriteD = 1'b0;
 			end
         endcase
     end
@@ -236,31 +309,32 @@ module arm (
 	// FlagsReg holds our ALU Flags for later use 
 	
 	// This Module holds the flags for use in the next clock cycle
-	FlagsReg flgreg (ALUFlags, FlagWrite, clk, StoredFlags);
+	FlagsReg flgreg (ALUFlagsE, FlagWriteE, clk, FlagsPrime);
+
 	
 	always_comb begin // Determine if condition is true via saved ALU Flags
 		case (InstrD[31:28]) 
-			4'b1110 : CondTrue = 1; // unconditional
+			4'b1110 : CondExE = 1; // unconditional
 			4'b0000 : begin // equal
-				CondTrue = StoredFlags[2]; 
+				CondExE = FlagsE[2]; 
 			end
 			4'b0001 : begin // not equal
-				CondTrue = ~StoredFlags[2];
+				CondExE = ~FlagsE[2];
 			end
 			4'b1010 : begin // greater or equal
-				CondTrue = ~StoredFlags[3];
+				CondExE = ~FlagsE[3];
 			end
 			4'b1100 : begin // greater
-				CondTrue = ~StoredFlags[3] & ~StoredFlags[2];
+				CondExE = ~FlagsE[3] & ~FlagsE[2];
 			end
 			4'b1101 : begin // less or equal
-				CondTrue = StoredFlags[3] | StoredFlags[2];
+				CondExE = FlagsE[3] | FlagsE[2];
 			end
 			4'b1011 : begin // less
-				CondTrue = StoredFlags[3];
+				CondExE = FlagsE[3];
 			end
 			default : begin
-				CondTrue = 1'b0;
+				CondExE = 1'b0;
 			end
 		endcase
 	end
