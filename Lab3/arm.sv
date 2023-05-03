@@ -26,24 +26,24 @@ module arm (
     logic [ 3:0] ALUFlags;                  // alu combinational flag outputs
     logic [31:0] ExtImmE, SrcAE, SrcBE;        // immediate and alu inputs 
     logic [31:0] ResultW;                    // computed or fetched value to be written into regfile or pc
-	 logic [31:0] ALUOutM, ALUOutW;
+	logic [31:0] ALUOutM, ALUOutW;
     // control signals
     logic BranchD, PCSrcD, MemtoRegD, ALUSrcD, RegWriteD;
-	 logic BranchE, PCSrcE, MemtoRegE, MemWriteE, ALUSrcE, RegWriteE;
-	 logic PCSrcM, MemtoRegM, MemWriteM, RegWriteM;
-	 logic PCSrcW, MemtoRegW, RegWriteW;
-	 logic [1:0] RegSrcD, ImmSrcD, ALUControlD;
+	logic BranchE, PCSrcE, MemtoRegE, MemWriteE, ALUSrcE, RegWriteE;
+	logic PCSrcM, MemtoRegM, MemWriteM, RegWriteM;
+	logic PCSrcW, MemtoRegW, RegWriteW;
+	logic [1:0] RegSrcD, ImmSrcD, ALUControlD;
     logic [1:0] RegSrcE, ALUControlE;
-	 // This signal is true when we need to save the ALU flag outputs
-	 logic FlagWriteD, FlagWriteE;
-	 // This is the stored Flags
-	 logic [3:0] StoredFlags, StoredFlagsE;
+	// This signal is true when we need to save the ALU flag outputs
+	logic FlagWriteD, FlagWriteE;
+	// This is the stored Flags
+	logic [3:0] StoredFlags, StoredFlagsE;
 	 
 	 
-	 logic [3:0] WA3E, WA3M, WA3W;
+	logic [3:0] WA3E, WA3M, WA3W;
 	
-	 // This is 1 when the Condition is true with the flags from the previous clock cycle
-	 // it is set via the 
+	// This is 1 when the Condition is true with the flags from the previous clock cycle
+	// it is set via the 
 	logic CondTrue; // Is 1 when cond is satisfied 
 	 	 
 	 
@@ -65,9 +65,9 @@ module arm (
         else     PC <= PCPrime;
     end
 	 
-	 always_ff @(posedge clk) begin
-		  IntrD <= IntrF;
-	 end
+	always_ff @(posedge clk) begin
+	  IntrD <= IntrF;
+	end
 
     // determine the register addresses based on control signals
     // RegSrc[0] is set if doing a branch instruction
@@ -94,7 +94,7 @@ module arm (
         if      (ImmSrcD == 'b00) ExtImmE = {{24{InstrD[7]}},InstrD[7:0]};          // 8 bit immediate - reg operations
         else if (ImmSrcD == 'b01) ExtImmE = {20'b0, InstrD[11:0]};                 // 12 bit immediate - mem operations
         else                     ExtImmE = {{6{InstrD[23]}}, InstrD[23:0], 2'b00}; // 24 bit immediate - branch operation
-	 end
+	end
 	 
 	 
 
