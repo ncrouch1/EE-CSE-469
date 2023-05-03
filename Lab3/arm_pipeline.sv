@@ -11,3 +11,5 @@ module arm_pipeline(
 	logic [1:0] AluControlD, AluControlE, ForwardAE, ForwardBE, RegSrcD;
 	logic AluSrcD, BranchD, FlagWriteD, ImmSrcD, MemToRegD, MemWriteD, RegWriteD, 
 	StallF, StallD, FlushD, FlushE,
+
+endmodule
