@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC
-Wed May 03 12:13:58 2023
+Wed May 03 14:55:41 2023
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -38,7 +38,7 @@ agreement for further details.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Wed May 03 12:13:58 2023           ;
+; Analysis & Synthesis Status ; Failed - Wed May 03 14:55:41 2023           ;
 ; Quartus Prime Version       ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name               ; DE1_SoC                                     ;
 ; Top-level Entity Name       ; top                                         ;
@@ -162,7 +162,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Wed May 03 12:13:44 2023
+    Info: Processing started: Wed May 03 14:55:27 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC -c DE1_SoC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -198,22 +198,24 @@ Warning (10236): Verilog HDL Implicit Net warning at arm.sv(52): created implici
 Warning (10236): Verilog HDL Implicit Net warning at arm.sv(52): created implicit net for "RA2E" File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 52
 Warning (10236): Verilog HDL Implicit Net warning at arm.sv(52): created implicit net for "WA2E" File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 52
 Warning (10236): Verilog HDL Implicit Net warning at arm.sv(53): created implicit net for "BranchTakenE" File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 53
-Warning (10236): Verilog HDL Implicit Net warning at arm.sv(155): created implicit net for "Result" File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 155
-Warning (10236): Verilog HDL Implicit Net warning at arm.sv(293): created implicit net for "ALUFlagsE" File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 293
-Error (10161): Verilog HDL error at arm.sv(110): object "MemtoRegE" is not declared. Verify the object name is correct. If the name is correct, declare the object. File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 110
-Error (10161): Verilog HDL error at arm.sv(140): object "RA2" is not declared. Verify the object name is correct. If the name is correct, declare the object. File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 140
-Error (10161): Verilog HDL error at arm.sv(141): object "RA1" is not declared. Verify the object name is correct. If the name is correct, declare the object. File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 141
-Error (10161): Verilog HDL error at arm.sv(142): object "ALUSrc" is not declared. Verify the object name is correct. If the name is correct, declare the object. File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 142
-Error (10161): Verilog HDL error at arm.sv(155): object "MemtoReg" is not declared. Verify the object name is correct. If the name is correct, declare the object. File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 155
-Error (10161): Verilog HDL error at arm.sv(155): object "ReadData" is not declared. Verify the object name is correct. If the name is correct, declare the object. File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 155
-Error (10161): Verilog HDL error at arm.sv(155): object "ALUResult" is not declared. Verify the object name is correct. If the name is correct, declare the object. File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 155
-Error (10161): Verilog HDL error at arm.sv(163): object "MemToRegM" is not declared. Verify the object name is correct. If the name is correct, declare the object. File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 163
-Error (10161): Verilog HDL error at arm.sv(188): object "MemtoRegD" is not declared. Verify the object name is correct. If the name is correct, declare the object. File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 188
-Error (10161): Verilog HDL error at arm.sv(208): object "Instr" is not declared. Verify the object name is correct. If the name is correct, declare the object. File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 208
+Warning (10236): Verilog HDL Implicit Net warning at arm.sv(307): created implicit net for "ALUFlagsE" File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 307
+Info (12127): Elaborating entity "top" for the top level hierarchy
+Info (12128): Elaborating entity "arm" for hierarchy "arm:processor" File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/top.sv Line: 30
+Warning (10036): Verilog HDL or VHDL warning at arm.sv(27): object "ExtImmE" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 27
+Warning (10858): Verilog HDL warning at arm.sv(29): object ALUOutW used but never assigned File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 29
+Warning (10858): Verilog HDL warning at arm.sv(31): object BranchD used but never assigned File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 31
+Warning (10036): Verilog HDL or VHDL warning at arm.sv(32): object "BranchE" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 32
+Warning (10036): Verilog HDL or VHDL warning at arm.sv(32): object "ALUSrcE" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 32
+Warning (10036): Verilog HDL or VHDL warning at arm.sv(33): object "MemWriteM" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 33
+Warning (10036): Verilog HDL or VHDL warning at arm.sv(38): object "FlagWriteD" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 38
+Warning (10036): Verilog HDL or VHDL warning at arm.sv(40): object "CondE" assigned a value but never read File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 40
+Error (10043): Verilog HDL unsupported feature error at arm.sv(144): Procedural Continuous Assignment to register is not supported File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 144
+Warning (10270): Verilog HDL Case Statement warning at arm.sv(143): incomplete case statement has no default case item File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 143
+Error (12152): Can't elaborate user hierarchy "arm:processor" File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/top.sv Line: 30
 Info (144001): Generated suppressed messages file C:/Users/noah-/Documents/EE-CSE-469/Lab3/output_files/DE1_SoC.map.smsg
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 10 errors, 8 warnings
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 16 warnings
     Error: Peak virtual memory: 4771 megabytes
-    Error: Processing ended: Wed May 03 12:13:58 2023
+    Error: Processing ended: Wed May 03 14:55:41 2023
     Error: Elapsed time: 00:00:14
     Error: Total CPU time (on all processors): 00:00:13
 

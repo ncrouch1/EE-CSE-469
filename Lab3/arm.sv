@@ -30,8 +30,8 @@ module arm (
     // control signals
     logic BranchD, PCSrcD, MemToRegD, ALUSrcD, RegWriteD;
 	logic BranchE, PCSrcE, MemToRegE, MemWriteE, ALUSrcE, RegWriteE;
-	logic PCSrcM, MemtoRegM, MemWriteM, RegWriteM;
-	logic PCSrcW, MemtoRegW, RegWriteW;
+	logic PCSrcM, MemToRegM, MemWriteM, RegWriteM;
+	logic PCSrcW, MemToRegW, RegWriteW;
 	logic [1:0] RegSrcD, ImmSrcD, ALUControlD;
     logic [1:0] RegSrcE, ALUControlE;
 	// This signal is true when we need to save the ALU flag outputs
@@ -107,7 +107,7 @@ module arm (
             ExtImmE = '0;
             WA3E <= '0;
             PCSrcE <= '0;
-            MemtoRegE <= '0;
+            MemToRegE <= '0;
             MemWriteE <= '0;
             RegWriteE <= '0;
             BranchE <= '0;
@@ -116,8 +116,6 @@ module arm (
             FlagsE <= '0;
             FlagWriteE <= '0;
             CondE <= '0;
-            RD1 <= '0;
-            RD2 <= '0;
         end 
 		  else if (~FlushE) begin
             WA3E <= InstrD[15:12];
@@ -139,25 +137,20 @@ module arm (
 	 
 
     // WriteData and SrcA are direct outputs of the register file, wheras SrcB is chosen between reg file output and the immediate
-    assign WriteDataE = (RA2 == 'd15) ? PCPlus8D : RD2;           // substitute the 15th regfile register for PC 
-    
-    // SrcAE muxes
+    assign WriteDataE = (RA2D == 'd15) ? PCPlus8D : RD2;           // substitute the 15th regfile register for PC 	 
+
     always_comb begin
-        case(ForwardAE) begin
-            2'b00 : SrcAE <= RD1;
-            2'b01 : SrcAE <= ResultW;
-            2'b10 : SrcAE <= ALUOutM;
-        end
-    end
-    // SrcBE Muxes
-    always_comb begin
-        case(ForwardBE) begin
-            2'b00 : SrcBE <= RD2;
-            2'b01 : SrcBE <= ResultW;
-            2'b10 : SrcBE <= ALUOutM;
-        end
+        
     end
 
+    always_comb begin
+        case(ForwardBE) 
+            2'b00 : assign SrcBE = RD2;
+            2'b01 : assign SrcBE = ResultW;
+            2'b10 : assign SrcBE = ALUOutW;
+        endcase
+    end
+	 
     // TODO: insert your alu here
     // TODO: instantiation comment
     ALU u_alu (
@@ -169,7 +162,7 @@ module arm (
     );
 
     // determine the result to run back to PC or the register file based on whether we used a memory instruction
-    assign ResultW = MemToRegW ? ReadDataW : ALUOutW;    // determine whether final writeback result is from dmemory or alu
+    assign ResultW = MemToRegM ? ReadDataW : ALUOutW;    // determine whether final writeback result is from dmemory or alu
 
     always_ff @(posedge clk) begin
         WA3M <= WA3E;
@@ -179,7 +172,6 @@ module arm (
             MemWriteM <= MemWriteE;
             MemToRegM <= MemToRegE;
         end
-        ALUOutM <= ALUResultE;
     end
 
     always_ff @(posedge clk) begin
@@ -187,7 +179,6 @@ module arm (
         PCSrcW <= PCSrcM;
         RegWriteW <= RegWriteE;
         MemWriteM <= MemWriteE;
-        ALUOutW <= ALUOutM;
     end
 
     /* The control conists of a large decoder, which evaluates the top bits of the instruction and produces the control bits 
@@ -204,7 +195,7 @@ module arm (
             // ADD (Imm or Reg)
             8'b00?_0100_0 : begin   // note that we use wildcard "?" in bit 25. That bit decides whether we use immediate or reg, but regardless we add
                 PCSrcD    = 0;
-                MemtoRegD = 0; 
+                MemToRegD = 0; 
                 MemWriteD = 0; 
                 ALUSrcD   = InstrD[25]; // may use immediate
                 RegWriteD = 1;
@@ -224,7 +215,7 @@ module arm (
                 RegSrcD   = 'b00;
                 ImmSrcD   = 'b00; 
                 ALUControlD = 'b01;
-			    FlagWriteD   = Instr[20];
+			    FlagWriteD   = InstrD[20];
             end
 
             // AND
