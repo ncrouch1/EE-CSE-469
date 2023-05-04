@@ -1,9 +1,11 @@
 module hazardmodule (
+  RA1E, 
+  RA2E, 
+  WA3M, 
+  WA3W, 
   RA1D, 
   RA2D, 
-  WA3M, 
-  WA3W,
-  WA3E, 
+  WA2E,
   PCSrcD, 
   PCSrcE, 
   PCSrcM, 
@@ -11,7 +13,6 @@ module hazardmodule (
   RegWriteM, 
   RegWriteW, 
   RegWriteE,
-  MemToRegE,
   BranchTakenE,
   StallF, 
   StallD, 
@@ -21,10 +22,10 @@ module hazardmodule (
   ForwardBE 
   );
 
-input logic [3:0] WA3M, WA3W;
-input logic [3:0] RA1D, RA2D, WA3E;
+input logic [3:0] RA1E, RA2E, WA3M, WA3W;
+input logic [3:0] RA1D, RA2D, AW3E;
 input logic PCSrcD, PCSrcE, PCSrcM, PCSrcW;
-input logic RegWriteM, RegWriteE, RegWriteW, MemToRegE;
+input logic RegWriteM, RegWriteW, MemtoRegE;
 input logic BranchTakenE;
 output logic StallF, 
   StallD, 
@@ -36,14 +37,14 @@ logic Match_M [1:0];
 logic Match_W [1:0];
 
 // Data forwarding logic
-assign Match_M[0] = (RA1D == WA3M);
-assign Match_M[1] = (RA1D == WA3M);
-assign Match_W[0] = (RA2D == WA3W);
-assign Match_W[1] = (RA2D == WA3W);
+assign Match_M[0] = (ra1E == wa3M);
+assign Match_M[1] = (ra2E == wa3M);
+assign Match_W[0] = (ra2E == wa3W);
+assign Match_W[1] = (ra2E == wa3W);
 always_comb begin
 
   if(Match_M[0] & RegWriteM) begin
-    ForwardAE = 2'b10;
+    ForwardAE == 2'b10;
   end 
   else if (Match_W[0] & RegWriteW) begin
     ForwardAE = 2'b01;
@@ -53,7 +54,7 @@ always_comb begin
   end
 
   if(Match_M[1] & RegWriteM) begin
-    ForwardBE = 2'b10;
+    ForwardBE == 2'b10;
   end 
   else if (Match_W[1] & RegWriteW) begin
     ForwardBE = 2'b01;
@@ -62,13 +63,13 @@ always_comb begin
     ForwardBE = 2'b00;
   end
   // end forwarding logic
-end
+
   //stalling logic
   logic Match_12_D_E;
   logic ldrStallD;
   logic PCWrPendingF;
-  assign Match_12_D_E = (RA1D == WA3E) | (RA2D == WA3E);
-  assign ldrStallD = Match_12_D_E & MemToRegE;
+  assign Match_12_D_E = (ra1D == wa3E) | (ra2D == wa3E);
+  assign ldrStallD = Match_12_D_E & MemtoRegE;
 
 
   
@@ -79,4 +80,6 @@ end
   assign StallD = ldrStallD;
 
 
-endmodule 
+end
+
+endmodule

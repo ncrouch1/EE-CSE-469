@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at arm.sv(105): always construct contains both blocking and non-blocking assignments File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 105
+Warning (10268): Verilog HDL information at arm.sv(104): always construct contains both blocking and non-blocking assignments File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv Line: 104

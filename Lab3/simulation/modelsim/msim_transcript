@@ -10,117 +10,210 @@
 # Copying C:/intelFPGA_lite/17.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3 {C:/Users/noah-/Documents/EE-CSE-469/Lab3/hazardmodule.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 18:05:15 on May 03,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3" C:/Users/noah-/Documents/EE-CSE-469/Lab3/hazardmodule.sv 
+# -- Compiling module hazardmodule
+# 
+# Top level modules:
+# 	hazardmodule
+# End time: 18:05:15 on May 03,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3 {C:/Users/noah-/Documents/EE-CSE-469/Lab3/FlagsReg.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 18:05:15 on May 03,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3" C:/Users/noah-/Documents/EE-CSE-469/Lab3/FlagsReg.sv 
+# -- Compiling module FlagsReg
+# 
+# Top level modules:
+# 	FlagsReg
+# End time: 18:05:15 on May 03,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/reg_file.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:10 on Apr 19,2023
+# Start time: 18:05:15 on May 03,2023
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/reg_file.sv 
 # -- Compiling module reg_file
 # -- Compiling module reg_file_tb
 # 
 # Top level modules:
 # 	reg_file_tb
-# End time: 11:35:10 on Apr 19,2023, Elapsed time: 0:00:00
+# End time: 18:05:15 on May 03,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:10 on Apr 19,2023
+# Start time: 18:05:15 on May 03,2023
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv 
 # -- Compiling module fullAdder
 # -- Compiling module fullAdder_testBench
 # 
 # Top level modules:
 # 	fullAdder_testBench
-# End time: 11:35:10 on Apr 19,2023, Elapsed time: 0:00:00
+# End time: 18:05:16 on May 03,2023, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:10 on Apr 19,2023
+# Start time: 18:05:16 on May 03,2023
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv 
 # -- Compiling module ttLogic
 # -- Compiling module ttLogic_TB
 # 
 # Top level modules:
 # 	ttLogic_TB
-# End time: 11:35:10 on Apr 19,2023, Elapsed time: 0:00:00
+# End time: 18:05:16 on May 03,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2 {C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv}
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3 {C:/Users/noah-/Documents/EE-CSE-469/Lab3/top.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:10 on Apr 19,2023
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2" C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv 
+# Start time: 18:05:16 on May 03,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3" C:/Users/noah-/Documents/EE-CSE-469/Lab3/top.sv 
 # -- Compiling module top
 # -- Compiling module testbench2
 # 
 # Top level modules:
 # 	testbench2
-# End time: 11:35:11 on Apr 19,2023, Elapsed time: 0:00:01
+# End time: 18:05:16 on May 03,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2 {C:/Users/noah-/Documents/EE-CSE-469/Lab2/dmem.sv}
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3 {C:/Users/noah-/Documents/EE-CSE-469/Lab3/dmem.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:11 on Apr 19,2023
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2" C:/Users/noah-/Documents/EE-CSE-469/Lab2/dmem.sv 
+# Start time: 18:05:16 on May 03,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3" C:/Users/noah-/Documents/EE-CSE-469/Lab3/dmem.sv 
 # -- Compiling module dmem
 # 
 # Top level modules:
 # 	dmem
-# End time: 11:35:11 on Apr 19,2023, Elapsed time: 0:00:00
+# End time: 18:05:16 on May 03,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2 {C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv}
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3 {C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:11 on Apr 19,2023
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2" C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv 
+# Start time: 18:05:16 on May 03,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3" C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv 
 # -- Compiling module arm
 # 
 # Top level modules:
 # 	arm
-# End time: 11:35:11 on Apr 19,2023, Elapsed time: 0:00:00
+# End time: 18:05:16 on May 03,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3 {C:/Users/noah-/Documents/EE-CSE-469/Lab3/Mux2x1.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 18:05:16 on May 03,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3" C:/Users/noah-/Documents/EE-CSE-469/Lab3/Mux2x1.sv 
+# -- Compiling module Mux2x1
+# 
+# Top level modules:
+# 	Mux2x1
+# End time: 18:05:16 on May 03,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1 {C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:11 on Apr 19,2023
+# Start time: 18:05:16 on May 03,2023
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1" C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv 
 # -- Compiling module ALU
 # -- Compiling module ALU_testbench
 # 
 # Top level modules:
 # 	ALU_testbench
-# End time: 11:35:11 on Apr 19,2023, Elapsed time: 0:00:00
+# End time: 18:05:16 on May 03,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2 {C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv}
+# vlog -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3 {C:/Users/noah-/Documents/EE-CSE-469/Lab3/imem.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:11 on Apr 19,2023
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2" C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv 
+# Start time: 18:05:16 on May 03,2023
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3" C:/Users/noah-/Documents/EE-CSE-469/Lab3/imem.sv 
 # -- Compiling module imem
 # 
 # Top level modules:
 # 	imem
-# End time: 11:35:11 on Apr 19,2023, Elapsed time: 0:00:00
+# End time: 18:05:16 on May 03,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 vsim work.testbench2
 # vsim work.testbench2 
-# Start time: 11:35:44 on Apr 19,2023
+# Start time: 18:05:25 on May 03,2023
 # Loading sv_std.std
 # Loading work.testbench2
 # Loading work.top
 # Loading work.arm
+# Loading work.hazardmodule
 # Loading work.reg_file
+# Loading work.Mux2x1
 # Loading work.ALU
 # Loading work.ttLogic
+# Loading work.FlagsReg
 # Loading work.imem
 # Loading work.dmem
 # Loading work.fullAdder
-add wave -position end  sim:/testbench2/cpu/clk
-add wave -position end  sim:/testbench2/cpu/rst
-add wave -position end  sim:/testbench2/cpu/Instr
-add wave -position end  sim:/testbench2/cpu/ReadData
-add wave -position end  sim:/testbench2/cpu/WriteData
-add wave -position end  sim:/testbench2/cpu/PC
-add wave -position end  sim:/testbench2/cpu/ALUResult
-add wave -position end  sim:/testbench2/cpu/MemWrite
+# ** Warning: (vsim-3015) C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv(305): [PCDPC] - Port size (4) does not match connection size (1) for port 'FlagsIn'. The port definition is at: C:/Users/noah-/Documents/EE-CSE-469/Lab3/FlagsReg.sv(8).
+#    Time: 0 ps  Iteration: 0  Instance: /testbench2/cpu/processor/flgreg File: C:/Users/noah-/Documents/EE-CSE-469/Lab3/FlagsReg.sv
+add wave -position end  sim:/testbench2/cpu/processor/clk
+add wave -position end  sim:/testbench2/cpu/processor/rst
+add wave -position end  sim:/testbench2/cpu/processor/InstrF
+add wave -position end  sim:/testbench2/cpu/processor/ReadDataW
+add wave -position end  sim:/testbench2/cpu/processor/WriteDataE
+add wave -position end  sim:/testbench2/cpu/processor/PCF
+add wave -position end  sim:/testbench2/cpu/processor/ALUResultE
+add wave -position end  sim:/testbench2/cpu/processor/MemWriteM
+add wave -position end  sim:/testbench2/cpu/processor/InstrD
+add wave -position end  sim:/testbench2/cpu/processor/PCPrime
+add wave -position end  sim:/testbench2/cpu/processor/PCPrimePrime
+add wave -position end  sim:/testbench2/cpu/processor/PCPlus4F
+add wave -position end  sim:/testbench2/cpu/processor/PCPlus8D
+add wave -position end  sim:/testbench2/cpu/processor/RA1D
+add wave -position end  sim:/testbench2/cpu/processor/RA2D
+add wave -position end  sim:/testbench2/cpu/processor/RD1
+add wave -position end  sim:/testbench2/cpu/processor/RD2
+add wave -position end  sim:/testbench2/cpu/processor/ALUFlags
+add wave -position end  sim:/testbench2/cpu/processor/ExtImmE
+add wave -position end  sim:/testbench2/cpu/processor/SrcAE
+add wave -position end  sim:/testbench2/cpu/processor/SrcBE
+add wave -position end  sim:/testbench2/cpu/processor/ResultW
+add wave -position end  sim:/testbench2/cpu/processor/ALUOutM
+add wave -position end  sim:/testbench2/cpu/processor/ALUOutW
+add wave -position end  sim:/testbench2/cpu/processor/BranchD
+add wave -position end  sim:/testbench2/cpu/processor/PCSrcD
+add wave -position end  sim:/testbench2/cpu/processor/MemToRegD
+add wave -position end  sim:/testbench2/cpu/processor/ALUSrcD
+add wave -position end  sim:/testbench2/cpu/processor/RegWriteD
+add wave -position end  sim:/testbench2/cpu/processor/BranchE
+add wave -position end  sim:/testbench2/cpu/processor/PCSrcE
+add wave -position end  sim:/testbench2/cpu/processor/MemToRegE
+add wave -position end  sim:/testbench2/cpu/processor/MemWriteE
+add wave -position end  sim:/testbench2/cpu/processor/ALUSrcE
+add wave -position end  sim:/testbench2/cpu/processor/RegWriteE
+add wave -position end  sim:/testbench2/cpu/processor/PCSrcM
+add wave -position end  sim:/testbench2/cpu/processor/MemToRegM
+add wave -position end  sim:/testbench2/cpu/processor/MemWriteD
+add wave -position end  sim:/testbench2/cpu/processor/RegWriteM
+add wave -position end  sim:/testbench2/cpu/processor/PCSrcW
+add wave -position end  sim:/testbench2/cpu/processor/MemToRegW
+add wave -position end  sim:/testbench2/cpu/processor/RegWriteW
+add wave -position end  sim:/testbench2/cpu/processor/RegSrcD
+add wave -position end  sim:/testbench2/cpu/processor/ImmSrcD
+add wave -position end  sim:/testbench2/cpu/processor/ALUControlD
+add wave -position end  sim:/testbench2/cpu/processor/RegSrcE
+add wave -position end  sim:/testbench2/cpu/processor/ALUControlE
+add wave -position end  sim:/testbench2/cpu/processor/FlagWriteD
+add wave -position end  sim:/testbench2/cpu/processor/FlagWriteE
+add wave -position end  sim:/testbench2/cpu/processor/FlagsPrime
+add wave -position end  sim:/testbench2/cpu/processor/FlagsE
+add wave -position end  sim:/testbench2/cpu/processor/CondE
+add wave -position end  sim:/testbench2/cpu/processor/StallD
+add wave -position end  sim:/testbench2/cpu/processor/StallF
+add wave -position end  sim:/testbench2/cpu/processor/FlushD
+add wave -position end  sim:/testbench2/cpu/processor/FlushE
+add wave -position end  sim:/testbench2/cpu/processor/ForwardAE
+add wave -position end  sim:/testbench2/cpu/processor/ForwardBE
+add wave -position end  sim:/testbench2/cpu/processor/WA3E
+add wave -position end  sim:/testbench2/cpu/processor/WA3M
+add wave -position end  sim:/testbench2/cpu/processor/WA3W
+add wave -position end  sim:/testbench2/cpu/processor/CondExE
+add wave -position end  sim:/testbench2/cpu/processor/BranchTakenE
+add wave -position end  sim:/testbench2/cpu/processor/SrcBEPrime
+add wave -position end  sim:/testbench2/cpu/processor/ALUFlagsE
+# Load canceled
 run -all
-# Task 1 Failed
-# ** Note: $stop    : C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv(95)
+# Task 2 Failed
+# ** Note: $stop    : C:/Users/noah-/Documents/EE-CSE-469/Lab3/top.sv(95)
 #    Time: 5200 ps  Iteration: 1  Instance: /testbench2
-# Break in Module testbench2 at C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv line 95
-# End time: 11:39:30 on Apr 19,2023, Elapsed time: 0:03:46
-# Errors: 0, Warnings: 0
+# Break in Module testbench2 at C:/Users/noah-/Documents/EE-CSE-469/Lab3/top.sv line 95
+# End time: 18:07:17 on May 03,2023, Elapsed time: 0:01:52
+# Errors: 1, Warnings: 1

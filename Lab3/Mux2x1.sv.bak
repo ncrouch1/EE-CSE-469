@@ -1,0 +1,13 @@
+module Mux2x1(input logic [31:0] RegisterData, Result, ALUOut, input logic [1:0] forward, output logic[31:0] ALUSrc);
+
+	always_comb begin
+		case(forward) 
+			2'b00 : ALUSrc <= RegisterData;
+			2'b01 : ALUSrc <= Result;
+			2'b10 : ALUSrc <= ALUOut;
+			2'b11 : ;
+			default: ;
+		endcase
+	end 
+	
+endmodule 

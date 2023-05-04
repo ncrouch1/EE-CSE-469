@@ -11,40 +11,40 @@ module top(
 );
     
     // processor io signals
-    logic [31:0] InstrF;
-    logic [31:0] ReadDataW;
-    logic [31:0] WriteDataW;
-    logic [31:0] PCF, ALUResultE;
-    logic        MemWriteD;
+    logic [31:0] Instr;
+    logic [31:0] ReadData;
+    logic [31:0] WriteData;
+    logic [31:0] PC, ALUResult;
+    logic        MemWrite;
 
     // our single cycle arm processor
     arm processor (
         .clk        (clk        ), 
         .rst        (rst        ),
-        .Instr      (InstrF      ),
-        .ReadData   (ReadDataW   ),
-        .WriteData  (WriteDataW  ), 
-        .PC         (PCF         ), 
-        .ALUResult  (ALUResultE  ),
-        .MemWrite   (MemWriteD   )
+        .InstrF      (Instr      ),
+        .ReadDataW   (ReadData   ),
+        .WriteDataE  (WriteData  ), 
+        .PCF         (PC         ), 
+        .ALUResultE  (ALUResult  ),
+        .MemWriteM   (MemWrite   )
     );
 
     // instruction memory
     // contained machine code instructions which instruct processor on which operations to make
     // effectively a rom because our processor cannot write to it
     imem imemory (
-        .addr   (PCF     ),
-        .instr  (InstrF  )
+        .addr   (PC     ),
+        .instr  (Instr  )
     );
 
     // data memory
     // containes data accessible by the processor through ldr and str commands
     dmem dmemory (
         .clk     (clk       ), 
-        .wr_en   (MemWriteD  ),
-        .addr    (ALUResultE ),
-        .wr_data (WriteDataW ),
-        .rd_data (ReadDataW  )
+        .wr_en   (MemWrite  ),
+        .addr    (ALUResult ),
+        .wr_data (WriteData ),
+        .rd_data (ReadData  )
     );
 
 
@@ -84,13 +84,13 @@ module testbench2();
         // basic checking to ensure the right final answer is achieved. These DO NOT prove your system works. A more careful look at your 
         // simulation and code will be made.
 
-        // task 1:
-        assert(cpu.processor.u_reg_file.memory[8] == 32'd11) $display("Task 1 Passed");
-        else                                                 $display("Task 1 Failed");
+//        // task 1:
+//        assert(cpu.processor.u_reg_file.memory[8] == 32'd11) $display("Task 1 Passed");
+//        else                                                 $display("Task 1 Failed");
 
-        // task 2:
-        //assert(cpu.processor.u_reg_file.memory[8] == 32'd1)  $display("Task 2 Passed");
-        //else                                                 $display("Task 2 Failed");
+//        task 2:
+        assert(cpu.processor.u_reg_file.memory[8] == 32'd1)  $display("Task 2 Passed");
+        else                                                 $display("Task 2 Failed");
 
         $stop;
     end

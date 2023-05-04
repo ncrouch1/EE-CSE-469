@@ -7,10 +7,10 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/noah-/Documents/EE-CSE-469/Lab2/simulation/modelsim
+Z0 dC:/Users/noah-/Documents/EE-CSE-469/Lab3/simulation/modelsim
 vALU
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1681929311
+Z2 !s110 1683162316
 !i10b 1
 !s100 HOz5LM;@I8Znf5APD_odZ0
 I2j9<bTY^[]lO4P]7UlFeX3
@@ -26,7 +26,7 @@ Z9 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z10 !s108 1681929311.000000
+Z10 !s108 1683162316.000000
 Z11 !s107 C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv|
 Z12 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1|C:/Users/noah-/Documents/EE-CSE-469/Lab1/ALU.sv|
 !i113 1
@@ -64,71 +64,97 @@ varm
 R1
 R2
 !i10b 1
-!s100 G4fU9c7i7RYZXOCelmm=]2
-IdV2PIoO9_TU>:]Y<XNe`z0
+!s100 CNiFKD4:R8P1T;kmdGYoH3
+IYR;UBzJniFgL=SSjh2g`L2
 R3
 !s105 arm_sv_unit
 S1
 R0
-w1681928467
-8C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv
-FC:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv
+w1683162283
+8C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv
+FC:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv
 Z16 L0 13
 R9
 r1
 !s85 0
 31
 R10
-!s107 C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv|
-!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2|C:/Users/noah-/Documents/EE-CSE-469/Lab2/arm.sv|
+!s107 C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3|C:/Users/noah-/Documents/EE-CSE-469/Lab3/arm.sv|
 !i113 1
 R13
-Z17 !s92 -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2
+Z17 !s92 -sv -work work +incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3
 R15
 vdmem
 R1
 R2
 !i10b 1
 !s100 Oh:]]J_E8maKR390g`9n92
-I[3f33zSaJFJ;fc[_i3TF]0
+IeGj:XWf=fod:9j86IX;>82
 R3
 !s105 dmem_sv_unit
 S1
 R0
 w1681329329
-8C:/Users/noah-/Documents/EE-CSE-469/Lab2/dmem.sv
-FC:/Users/noah-/Documents/EE-CSE-469/Lab2/dmem.sv
+8C:/Users/noah-/Documents/EE-CSE-469/Lab3/dmem.sv
+FC:/Users/noah-/Documents/EE-CSE-469/Lab3/dmem.sv
 R16
 R9
 r1
 !s85 0
 31
 R10
-!s107 C:/Users/noah-/Documents/EE-CSE-469/Lab2/dmem.sv|
-!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2|C:/Users/noah-/Documents/EE-CSE-469/Lab2/dmem.sv|
+!s107 C:/Users/noah-/Documents/EE-CSE-469/Lab3/dmem.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3|C:/Users/noah-/Documents/EE-CSE-469/Lab3/dmem.sv|
 !i113 1
 R13
 R17
 R15
+vFlagsReg
+R1
+Z18 !s110 1683162315
+!i10b 1
+!s100 WQJc_NiO9acWn]IR9KTXH0
+I5dXh`JIBUR2zE>fDkm75g3
+R3
+!s105 FlagsReg_sv_unit
+S1
+R0
+w1682832165
+8C:/Users/noah-/Documents/EE-CSE-469/Lab3/FlagsReg.sv
+FC:/Users/noah-/Documents/EE-CSE-469/Lab3/FlagsReg.sv
+L0 8
+R9
+r1
+!s85 0
+31
+Z19 !s108 1683162315.000000
+!s107 C:/Users/noah-/Documents/EE-CSE-469/Lab3/FlagsReg.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3|C:/Users/noah-/Documents/EE-CSE-469/Lab3/FlagsReg.sv|
+!i113 1
+R13
+R17
+R15
+n@flags@reg
 vfullAdder
 R1
-Z18 !s110 1681929310
+R2
 !i10b 1
 !s100 VOIm5TaB2L1?mA5Lb9;Wm1
 I`XB?zzl0GJAl@iPIholhH1
 R3
-Z19 !s105 fullAdder_sv_unit
+Z20 !s105 fullAdder_sv_unit
 S1
 R0
-Z20 w1680892133
-Z21 8C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv
-Z22 FC:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv
+Z21 w1680892133
+Z22 8C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv
+Z23 FC:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv
 R8
 R9
 r1
 !s85 0
 31
-Z23 !s108 1681929310.000000
+R19
 Z24 !s107 C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv|
 Z25 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1|C:/Users/noah-/Documents/EE-CSE-469/Lab1/fullAdder.sv|
 !i113 1
@@ -138,23 +164,23 @@ R15
 nfull@adder
 vfullAdder_testBench
 R1
-R18
+R2
 !i10b 1
 !s100 >i_Zj79C9:WNCOXL;SPia2
 I=n9_>COnFd0K4_<W^D1i?2
 R3
-R19
+R20
 S1
 R0
-R20
 R21
 R22
+R23
 L0 29
 R9
 r1
 !s85 0
 31
-R23
+R19
 R24
 R25
 !i113 1
@@ -162,31 +188,82 @@ R13
 R14
 R15
 nfull@adder_test@bench
+vhazardmodule
+R1
+R18
+!i10b 1
+!s100 d^kn=l<Uldf?]Eg`8nM[<3
+IWP=h3KnRZi`086;zCnn<22
+R3
+!s105 hazardmodule_sv_unit
+S1
+R0
+w1683157992
+8C:/Users/noah-/Documents/EE-CSE-469/Lab3/hazardmodule.sv
+FC:/Users/noah-/Documents/EE-CSE-469/Lab3/hazardmodule.sv
+L0 1
+R9
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/noah-/Documents/EE-CSE-469/Lab3/hazardmodule.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3|C:/Users/noah-/Documents/EE-CSE-469/Lab3/hazardmodule.sv|
+!i113 1
+R13
+R17
+R15
 vimem
 R1
 R2
 !i10b 1
-!s100 :QKZiL2YRde]icgZUIJ8o0
-IX<IOQ8ZVQXYG<zAlCWNnL3
+!s100 BljL`:J]:kM8WG6JfTm:X1
+IJ_6Hkl2LX4Kn2:=Ll0o<K1
 R3
 !s105 imem_sv_unit
 S1
 R0
-w1681928241
-8C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv
-FC:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv
+w1683159128
+8C:/Users/noah-/Documents/EE-CSE-469/Lab3/imem.sv
+FC:/Users/noah-/Documents/EE-CSE-469/Lab3/imem.sv
 L0 15
 R9
 r1
 !s85 0
 31
 R10
-!s107 C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv|
-!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2|C:/Users/noah-/Documents/EE-CSE-469/Lab2/imem.sv|
+!s107 C:/Users/noah-/Documents/EE-CSE-469/Lab3/imem.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3|C:/Users/noah-/Documents/EE-CSE-469/Lab3/imem.sv|
 !i113 1
 R13
 R17
 R15
+vMux2x1
+R1
+R2
+!i10b 1
+!s100 ]z[=3a^55jK9QkzzkkOeT1
+IWACZzfAHM0`dT65@Nl6U33
+R3
+!s105 Mux2x1_sv_unit
+S1
+R0
+w1683158113
+8C:/Users/noah-/Documents/EE-CSE-469/Lab3/Mux2x1.sv
+FC:/Users/noah-/Documents/EE-CSE-469/Lab3/Mux2x1.sv
+L0 1
+R9
+r1
+!s85 0
+31
+R10
+!s107 C:/Users/noah-/Documents/EE-CSE-469/Lab3/Mux2x1.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3|C:/Users/noah-/Documents/EE-CSE-469/Lab3/Mux2x1.sv|
+!i113 1
+R13
+R17
+R15
+n@mux2x1
 vreg_file
 R1
 R18
@@ -205,7 +282,7 @@ R9
 r1
 !s85 0
 31
-R23
+R19
 Z30 !s107 C:/Users/noah-/Documents/EE-CSE-469/Lab1/reg_file.sv|
 Z31 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1|C:/Users/noah-/Documents/EE-CSE-469/Lab1/reg_file.sv|
 !i113 1
@@ -230,7 +307,7 @@ R9
 r1
 !s85 0
 31
-R23
+R19
 R30
 R31
 !i113 1
@@ -241,23 +318,23 @@ vtestbench2
 R1
 R2
 !i10b 1
-!s100 m4A?J[NSg]:01CgcIl75Z3
-IA;gE:jbHPK:c8;dLgGTa72
+!s100 @XOR5WfP^=X=7dm2cR7PZ2
+Ia4<b[?D=kiR_G]odnLI;n2
 R3
 Z32 !s105 top_sv_unit
 S1
 R0
-Z33 w1681927840
-Z34 8C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv
-Z35 FC:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv
+Z33 w1683161315
+Z34 8C:/Users/noah-/Documents/EE-CSE-469/Lab3/top.sv
+Z35 FC:/Users/noah-/Documents/EE-CSE-469/Lab3/top.sv
 L0 57
 R9
 r1
 !s85 0
 31
-R23
-Z36 !s107 C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv|
-Z37 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab2|C:/Users/noah-/Documents/EE-CSE-469/Lab2/top.sv|
+R10
+Z36 !s107 C:/Users/noah-/Documents/EE-CSE-469/Lab3/top.sv|
+Z37 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab3|C:/Users/noah-/Documents/EE-CSE-469/Lab3/top.sv|
 !i113 1
 R13
 R17
@@ -266,8 +343,8 @@ vtop
 R1
 R2
 !i10b 1
-!s100 6X6T21d]QNM;H;KA;UXh62
-IQE4]9^5dDiEj_@SQ:B^ZD1
+!s100 o[zc]m@o71:_aD>4@nk<^1
+ImD;4cT:=jJ6=SAQ;gHL[m0
 R3
 R32
 S1
@@ -280,7 +357,7 @@ R9
 r1
 !s85 0
 31
-R23
+R10
 R36
 R37
 !i113 1
@@ -289,7 +366,7 @@ R17
 R15
 vttLogic
 R1
-R18
+R2
 !i10b 1
 !s100 609Mk;H=4j]Adz5OQ4BRh3
 IQa@K]_mB^@XLP<>nkeR860
@@ -305,7 +382,7 @@ R9
 r1
 !s85 0
 31
-R23
+R10
 Z42 !s107 C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv|
 Z43 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/noah-/Documents/EE-CSE-469/Lab1|C:/Users/noah-/Documents/EE-CSE-469/Lab1/ttLogic.sv|
 !i113 1
@@ -315,7 +392,7 @@ R15
 ntt@logic
 vttLogic_TB
 R1
-R18
+R2
 !i10b 1
 !s100 8RD5C>A4KJzKPdJYh:24]1
 I7CAeV4fe>EkYgUIGOc_m`3
@@ -331,7 +408,7 @@ R9
 r1
 !s85 0
 31
-R23
+R10
 R42
 R43
 !i113 1
