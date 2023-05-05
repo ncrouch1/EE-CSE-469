@@ -21,7 +21,7 @@ module arm (
 
     // datapath buses and signals
     logic [31:0] InstrD, PCPrime, PCPrimePrime, PCPlus4F, PCPlus8D; // pc signals
-    logic [ 3:0] RA1D, RA2D;                  // regfile input addresses
+    logic [ 3:0] RA1D, RA2D, RA1E, RA2E;                  // regfile input addresses
     logic [31:0] RD1, RD2;                  // raw regfile outputs
     logic [ 3:0] ALUFlags;                  // alu combinational flag outputs
     logic [31:0] ExtImmE, SrcAE, SrcBE;        // immediate and alu inputs 
@@ -49,7 +49,7 @@ module arm (
 	logic CondExE; // Is 1 when cond is satisfied 
 	assign BranchTakenE = (CondExE & BranchE);
 
-    hazardmodule hz (RA1D, RA2D, WA3M, WA3W, WA3E, PCSrcD, PCSrcE, PCSrcM, PCSrcW, RegWriteM,
+    hazardmodule hz (RA1D, RA2D, RA1E, RA2E, WA3M, WA3W, WA3E, PCSrcD, PCSrcE, PCSrcM, PCSrcW, RegWriteM,
         RegWriteW, RegWriteE, MemToRegE, BranchTakenE, StallF, StallD, FlushD, FlushE, ForwardAE, ForwardBE);
 	 
     /* The datapath consists of a PC as well as a series of muxes to make decisions about which data words to pass forward and operate on. It is 
@@ -67,8 +67,10 @@ module arm (
     // update the PC, at rst initialize to 0
     always_ff @(posedge clk) begin
         if (rst) PCF <= '0;
-        if (~StallF) 
-            PCF <= PCPrime; 
+        if (StallF) 
+            PCF <= PCF; 
+        else 
+            PCF <= PCPrime;
     end
 	 
 	always_ff @(posedge clk) begin
@@ -106,6 +108,8 @@ module arm (
             ExtImmE = '0;
             WA3E <= '0;
             PCSrcE <= '0;
+            RA1E <= '0;
+            RA2E <= '0;
             MemToRegE <= '0;
             MemWriteE <= '0;
             RegWriteE <= '0;
@@ -119,6 +123,8 @@ module arm (
 		  else if (~FlushE) begin
             WA3E <= InstrD[15:12];
             PCSrcE <= PCSrcD;
+            RA1E <= RA1D;
+            RA2E <= RA2D;
             MemToRegE <= MemToRegD;
             MemWriteE <= MemWriteD;
             RegWriteE <= RegWriteD;
@@ -138,12 +144,12 @@ module arm (
 
     // WriteData and SrcA are direct outputs of the register file, wheras SrcB is chosen between reg file output and the immediate
     assign WriteDataE = (RA2D == 'd15) ? PCPlus8D : RD2;           // substitute the 15th regfile register for PC 	 
-	 logic [31:0] SrcBEPrime;
+	logic [31:0] SrcBEPrime;
 
     Mux2x1 alusrc1 (.RegisterData(RD1), .Result(ResultW), .ALUOut(ALUOutW), .forward(ForwardAE), .ALUSrc(SrcAE));
-	 Mux2x1 alusrc2 (.RegisterData(RD2), .Result(ResultW), .ALUOut(ALUOutW), .forward(ForwardBE), .ALUSrc(SrcBEPrime));
+	Mux2x1 alusrc2 (.RegisterData(RD2), .Result(ResultW), .ALUOut(ALUOutW), .forward(ForwardBE), .ALUSrc(SrcBEPrime));
 	
-	 assign SrcBE = ALUSrcE ? ExtImmE : SrcBEPrime;
+	assign SrcBE = ALUSrcE ? ExtImmE : SrcBEPrime;
 	 
     // TODO: insert your alu here
     // TODO: instantiation comment

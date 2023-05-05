@@ -1,6 +1,8 @@
 module hazardmodule (
   RA1D, 
   RA2D, 
+  RA1E,
+  RA2E,
   WA3M, 
   WA3W,
   WA3E, 
@@ -22,7 +24,7 @@ module hazardmodule (
   );
 
 input logic [3:0] WA3M, WA3W;
-input logic [3:0] RA1D, RA2D, WA3E;
+input logic [3:0] RA1D, RA2D, RA1E, RA2E, WA3E;
 input logic PCSrcD, PCSrcE, PCSrcM, PCSrcW;
 input logic RegWriteM, RegWriteE, RegWriteW, MemToRegE;
 input logic BranchTakenE;
@@ -36,10 +38,10 @@ logic Match_M [1:0];
 logic Match_W [1:0];
 
 // Data forwarding logic
-assign Match_M[0] = (RA1D == WA3M);
-assign Match_M[1] = (RA1D == WA3M);
-assign Match_W[0] = (RA2D == WA3W);
-assign Match_W[1] = (RA2D == WA3W);
+assign Match_M[0] = (RA1E == WA3M);
+assign Match_M[1] = (RA1E == WA3M);
+assign Match_W[0] = (RA2E == WA3W);
+assign Match_W[1] = (RA2E == WA3W);
 always_comb begin
 
   if(Match_M[0] & RegWriteM) begin
