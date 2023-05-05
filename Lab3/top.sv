@@ -22,7 +22,7 @@ module top(
         .clk        (clk        ), 
         .rst        (rst        ),
         .InstrF      (Instr      ),
-        .ReadDataW   (ReadData   ),
+        .ReadDataM   (ReadData   ),
         .WriteDataE  (WriteData  ), 
         .PCF         (PC         ), 
         .ALUResultE  (ALUResult  ),

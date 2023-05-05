@@ -13,7 +13,7 @@
 module arm (
     input  logic        clk, rst,
     input  logic [31:0] InstrF,
-    input  logic [31:0] ReadDataW,
+    input  logic [31:0] ReadDataM,
     output logic [31:0] WriteDataE, 
     output logic [31:0] PCF, ALUResultE,
     output logic        MemWriteM
@@ -162,23 +162,25 @@ module arm (
     );
 
     // determine the result to run back to PC or the register file based on whether we used a memory instruction
-    assign ResultW = MemToRegM ? ReadDataW : ALUOutW;    // determine whether final writeback result is from dmemory or alu
-
+    assign ResultW = MemToRegW ? ReadDataW : ALUOutW;    // determine whether final writeback result is from dmemory or alu
+    
+    // M register
     always_ff @(posedge clk) begin
         WA3M <= WA3E;
-        if (CondExE) begin
-            PCSrcM <= PCSrcE;
-            RegWriteM <= RegWriteE;
-            MemWriteM <= MemWriteE;
-            MemToRegM <= MemToRegE;
-        end
+        PCSrcM <= CondExe & PCSrcE;
+        RegWriteM <= CondExE & RegWriteE;
+        MemWriteM <= CondExE & MemWriteE;
+        MemToRegM <= MemToRegE;
     end
-
+    
+    // writeback reg
     always_ff @(posedge clk) begin
         WA3W <= WA3M;
         PCSrcW <= PCSrcM;
-        RegWriteW <= RegWriteE;
+        RegWriteW <= RegWriteM;
         MemToRegW <= MemToRegM;
+        ALUOutW <= ALUOutM;
+        ReadDataW <= ReadDataM;
     end
 
     /* The control conists of a large decoder, which evaluates the top bits of the instruction and produces the control bits 
