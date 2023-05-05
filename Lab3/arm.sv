@@ -38,7 +38,7 @@ module arm (
 	logic FlagWriteD, FlagWriteE;
 	// This is the stored Flags
 	logic [3:0] FlagsPrime, FlagsE, CondE;
-	
+	// hazard unit output control
     logic StallD, StallF, FlushD, FlushE;
     logic [1:0] ForwardAE, ForwardBE;
 	 
@@ -65,18 +65,21 @@ module arm (
     assign PCPlus8D = PCPlus4F;             // value read when reading from reg[15]
 
     // update the PC, at rst initialize to 0
+    // Register F 
     always_ff @(posedge clk) begin
         if (rst) PCF <= '0;
         if (~StallF) 
             PCF <= PCPrime; 
     end
-	 
+	
+    // Register D
 	always_ff @(posedge clk) begin
-        if (~StallD) begin
-            InstrD <= InstrF;
-        end 
         if (FlushD) begin 
             InstrD <= '0;
+        end else if (StallD) begin
+            InstrD <= InstrD;
+        end else begin
+            InstrD <= InstrF;
         end
 	end
 
@@ -101,6 +104,12 @@ module arm (
 
     // two muxes, put together into an always_comb for clarity
     // determines which set of instruction bits are used for the immediate
+    always_comb begin
+        if      (ImmSrcD == 'b00) ExtImmE = {{24{InstrD[7]}},InstrD[7:0]};          // 8 bit immediate - reg operations
+        else if (ImmSrcD == 'b01) ExtImmE = {20'b0, InstrD[11:0]};                 // 12 bit immediate - mem operations
+        else                     ExtImmE = {{6{InstrD[23]}}, InstrD[23:0], 2'b00}; // 24 bit immediate - branch operation
+    end
+    // E Register
     always_ff @(posedge clk) begin
         if (FlushE) begin 
             ExtImmE = '0;
@@ -129,9 +138,6 @@ module arm (
 				FlagWriteE <= FlagWriteD;
             CondE <= InstrD[31:28];
         end
-        if      (ImmSrcD == 'b00) ExtImmE = {{24{InstrD[7]}},InstrD[7:0]};          // 8 bit immediate - reg operations
-        else if (ImmSrcD == 'b01) ExtImmE = {20'b0, InstrD[11:0]};                 // 12 bit immediate - mem operations
-        else                     ExtImmE = {{6{InstrD[23]}}, InstrD[23:0], 2'b00}; // 24 bit immediate - branch operation
     end
 	
 	 
