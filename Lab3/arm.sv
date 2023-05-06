@@ -68,11 +68,13 @@ module arm (
     // update the PC, at rst initialize to 0
     // Register F 
     always_ff @(posedge clk) begin
-        if (rst) PCF <= '0;
-        if (StallF) 
+        if (rst) begin 
+			   PCF <= 0;
+		  end else if (StallF) begin 
             PCF <= PCF; 
-        else 
+		  end else begin
             PCF <= PCPrime;
+			end
     end
 	
     // Register D
@@ -295,12 +297,12 @@ module arm (
 
             // B with conditions
             8'b1010_???? : begin
-                    PCSrcD    = CondExE; 
+                    PCSrcD    = 1; 
                     MemToRegD = 0;
                     MemWriteD = 0; 
                     ALUSrcD   = 1;
 						  BranchD 	= 1;
-                    RegWriteD = CondExE;
+                    RegWriteD = 1;
                     RegSrcD   = 'b01;
                     ImmSrcD   = 'b10; 
                     ALUControlD = 'b00;  // do an add
