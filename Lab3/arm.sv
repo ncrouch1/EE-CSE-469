@@ -108,7 +108,7 @@ module arm (
     // two muxes, put together into an always_comb for clarity
     // determines which set of instruction bits are used for the immediate
     always_comb begin
-      if      (ImmSrcD == 'b00 | ImmSrcD == 'b01) begin
+    if      (ImmSrcD == 'b00 | ImmSrcD == 'b01) begin
 			if (ImmSrcD == 'b00) begin  // 8 bit immediate - reg operations
 				ExtImmD = {{24{InstrD[7]}},InstrD[7:0]};
 			end else begin // 12 bit immediate - mem operations
