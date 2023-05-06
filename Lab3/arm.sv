@@ -295,12 +295,12 @@ module arm (
 
             // B with conditions
             8'b1010_???? : begin
-                    PCSrcD    = CondExE; 
+                    PCSrcD    = 1; 
                     MemToRegD = 0;
                     MemWriteD = 0; 
                     ALUSrcD   = 1;
 						  BranchD 	= 1;
-                    RegWriteD = CondExE;
+                    RegWriteD = 1;
                     RegSrcD   = 'b01;
                     ImmSrcD   = 'b10; 
                     ALUControlD = 'b00;  // do an add
