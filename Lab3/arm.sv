@@ -15,7 +15,7 @@ module arm (
     input  logic [31:0] InstrF,
     input  logic [31:0] ReadDataM,
     output logic [31:0] WriteDataE, 
-    output logic [31:0] PCF, ALUResultE,
+    output logic [31:0] PCF, ALUOutM,
     output logic        MemWriteM
 );
 
@@ -24,9 +24,9 @@ module arm (
     logic [ 3:0] RA1D, RA2D;                  // regfile input addresses
     logic [31:0] RD1, RD2;                  // raw regfile outputs
     logic [ 3:0] ALUFlags;                  // alu combinational flag outputs
-    logic [31:0] ExtImmE, SrcAE, SrcBE;        // immediate and alu inputs 
-    logic [31:0] ResultW;                    // computed or fetched value to be written into regfile or pc
-	logic [31:0] ALUOutM, ALUOutW;
+    logic [31:0] ExtImmD, ExtImmE, SrcAE, SrcBE;        // immediate and alu inputs 
+    logic [31:0] ReadDataW, ResultW;                    // computed or fetched value to be written into regfile or pc
+	logic [31:0] ALUResultE, ALUOutW;
     // control signals
     logic BranchD, PCSrcD, MemToRegD, ALUSrcD, RegWriteD;
 	logic BranchE, PCSrcE, MemToRegE, MemWriteE, ALUSrcE, RegWriteE;
@@ -47,6 +47,7 @@ module arm (
 	// This is 1 when the Condition is true with the flags from the previous clock cycle
 	// it is set via the 
 	logic CondExE; // Is 1 when cond is satisfied 
+	logic BranchTakenE;
 	assign BranchTakenE = (CondExE & BranchE);
 
     hazardmodule hz (RA1D, RA2D, WA3M, WA3W, WA3E, PCSrcD, PCSrcE, PCSrcM, PCSrcW, RegWriteM,
@@ -105,9 +106,15 @@ module arm (
     // two muxes, put together into an always_comb for clarity
     // determines which set of instruction bits are used for the immediate
     always_comb begin
-        if      (ImmSrcD == 'b00) ExtImmE = {{24{InstrD[7]}},InstrD[7:0]};          // 8 bit immediate - reg operations
-        else if (ImmSrcD == 'b01) ExtImmE = {20'b0, InstrD[11:0]};                 // 12 bit immediate - mem operations
-        else                     ExtImmE = {{6{InstrD[23]}}, InstrD[23:0], 2'b00}; // 24 bit immediate - branch operation
+      if      (ImmSrcD == 'b00 | ImmSrcD == 'b01) begin
+			if (ImmSrcD == 'b00) begin  // 8 bit immediate - reg operations
+				ExtImmD = {{24{InstrD[7]}},InstrD[7:0]};
+			end else begin // 12 bit immediate - mem operations
+				ExtImmD = {20'b0, InstrD[11:0]}; 
+			end
+		end else begin
+			ExtImmD = {{6{InstrD[23]}}, InstrD[23:0], 2'b00}; // 24 bit immediate - branch operation
+		end
     end
     // E Register
     always_ff @(posedge clk) begin
@@ -137,6 +144,7 @@ module arm (
             FlagsE <= FlagsPrime;
 				FlagWriteE <= FlagWriteD;
             CondE <= InstrD[31:28];
+				ExtImmE <= ExtImmD;
         end
     end
 	
@@ -167,10 +175,11 @@ module arm (
     // M register
     always_ff @(posedge clk) begin
         WA3M <= WA3E;
-        PCSrcM <= CondExe & PCSrcE;
+        PCSrcM <= CondExE & PCSrcE;
         RegWriteM <= CondExE & RegWriteE;
         MemWriteM <= CondExE & MemWriteE;
         MemToRegM <= MemToRegE;
+		  ALUOutM <= ALUResultE;
     end
     
     // writeback reg
@@ -310,7 +319,7 @@ module arm (
 	// FlagsReg holds our ALU Flags for later use 
 	
 	// This Module holds the flags for use in the next clock cycle
-	FlagsReg flgreg (ALUFlagsE, FlagWriteE, clk, FlagsPrime);
+	FlagsReg flgreg (ALUFlags, FlagWriteE, clk, FlagsPrime);
 
 	
 	always_comb begin // Determine if condition is true via saved ALU Flags

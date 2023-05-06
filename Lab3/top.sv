@@ -25,7 +25,7 @@ module top(
         .ReadDataM   (ReadData   ),
         .WriteDataE  (WriteData  ), 
         .PCF         (PC         ), 
-        .ALUResultE  (ALUResult  ),
+        .ALUOutM  (ALUResult  ),
         .MemWriteM   (MemWrite   )
     );
 
