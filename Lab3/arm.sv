@@ -68,11 +68,13 @@ module arm (
     // update the PC, at rst initialize to 0
     // Register F 
     always_ff @(posedge clk) begin
-        if (rst) PCF <= '0;
-        if (StallF) 
+        if (rst) begin 
+			   PCF <= 0;
+		  end else if (StallF) begin 
             PCF <= PCF; 
-        else 
+		  end else begin
             PCF <= PCPrime;
+			end
     end
 	
     // Register D
