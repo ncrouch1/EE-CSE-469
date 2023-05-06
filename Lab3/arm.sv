@@ -136,7 +136,7 @@ module arm (
             FlagWriteE <= '0;
             CondE <= '0;
         end 
-		  else if (~FlushE) begin
+		  else begin
             WA3E <= InstrD[15:12];
             PCSrcE <= PCSrcD;
             RA1E <= RA1D;
