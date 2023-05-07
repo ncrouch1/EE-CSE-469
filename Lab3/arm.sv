@@ -14,7 +14,7 @@ module arm (
     input  logic        clk, rst,
     input  logic [31:0] InstrF,
     input  logic [31:0] ReadDataM,
-    output logic [31:0] WriteDataE, 
+    output logic [31:0] WriteDataM, 
     output logic [31:0] PCF, ALUOutM,
     output logic        MemWriteM
 );
@@ -22,11 +22,13 @@ module arm (
     // datapath buses and signals
     logic [31:0] InstrD, PCPrime, PCPrimePrime, PCPlus4F, PCPlus8D; // pc signals
     logic [ 3:0] RA1D, RA2D, RA1E, RA2E;                  // regfile input addresses
-    logic [31:0] RD1, RD2;                  // raw regfile outputs
+    logic [31:0] RD1D, RD2D, RD1E, RD2E;                  // raw regfile outputs, next regfile
+	logic [31:0] RD2EFinal, RD1EFinal;
     logic [ 3:0] ALUFlags;                  // alu combinational flag outputs
     logic [31:0] ExtImmD, ExtImmE, SrcAE, SrcBE;        // immediate and alu inputs 
     logic [31:0] ReadDataW, ResultW;                    // computed or fetched value to be written into regfile or pc
 	logic [31:0] ALUResultE, ALUOutW;
+	logic [31:0] WriteDataE;
     // control signals
     logic BranchD, PCSrcD, MemToRegD, ALUSrcD, RegWriteD;
 	logic BranchE, PCSrcE, MemToRegE, MemWriteE, ALUSrcE, RegWriteE;
@@ -97,14 +99,15 @@ module arm (
     // TODO: insert your reg file here
     // TODO: instantiation comment
     reg_file u_reg_file (
-        .clk       (~clk), 
+        .clk       (clk), 
         .wr_en     (RegWriteW),
         .write_data(ResultW),
         .write_addr(WA3W),
         .read_addr1(RA1D), 
         .read_addr2(RA2D),
-        .read_data1(RD1), 
-        .read_data2(RD2)
+        .read_data1(RD1D), 
+        .read_data2(RD2D),
+		  .rst(rst)
     );
 
     // two muxes, put together into an always_comb for clarity
@@ -128,6 +131,8 @@ module arm (
             PCSrcE <= '0;
             RA1E <= '0;
             RA2E <= '0;
+				RD1E <= '0;
+				RD2E <= '0;
             MemToRegE <= '0;
             MemWriteE <= '0;
             RegWriteE <= '0;
@@ -138,18 +143,21 @@ module arm (
             FlagWriteE <= '0;
             CondE <= '0;
         end 
-		  else if (~FlushE) begin
+		  else begin
             WA3E <= InstrD[15:12];
             PCSrcE <= PCSrcD;
             RA1E <= RA1D;
             RA2E <= RA2D;
+				RD1E <= RD1D;
+				RD2E <= RD2D;
             MemToRegE <= MemToRegD;
             MemWriteE <= MemWriteD;
             RegWriteE <= RegWriteD;
             BranchE <= BranchD;
             ALUControlE <= ALUControlD;
             ALUSrcE <= ALUSrcD;
-            FlagsE <= FlagsPrime;
+            //FlagsE <= FlagsPrime;
+				FlagsE <= FlagWriteE ? ALUFlags : FlagsE;
 				FlagWriteE <= FlagWriteD;
             CondE <= InstrD[31:28];
 				ExtImmE <= ExtImmD;
@@ -159,13 +167,15 @@ module arm (
 	 
 
     // WriteData and SrcA are direct outputs of the register file, wheras SrcB is chosen between reg file output and the immediate
-    assign WriteDataE = (RA2D == 'd15) ? PCPlus8D : RD2;           // substitute the 15th regfile register for PC 	 
+    assign RD2EFinal = (RA2E == 'd15) ? PCPlus8D : RD2E;           // substitute the 15th regfile register for PC
+	 assign RD1EFinal = (RA1E == 'd15) ? PCPlus8D : RD1E;
+	 
 	logic [31:0] SrcBEPrime;
 
-    Mux2x1 alusrc1 (.RegisterData(RD1), .Result(ResultW), .ALUOut(ALUOutW), .forward(ForwardAE), .ALUSrc(SrcAE));
-	Mux2x1 alusrc2 (.RegisterData(RD2), .Result(ResultW), .ALUOut(ALUOutW), .forward(ForwardBE), .ALUSrc(SrcBEPrime));
+    Mux2x1 alusrc1 (.RegisterData(RD1EFinal), .Result(ResultW), .ALUOut(ALUOutM), .forward(ForwardAE), .ALUSrc(SrcAE));
+	Mux2x1 alusrc2 (.RegisterData(RD2EFinal), .Result(ResultW), .ALUOut(ALUOutM), .forward(ForwardBE), .ALUSrc(WriteDataE));
+	assign SrcBE = ALUSrcE ? ExtImmE : WriteDataE;
 	
-	assign SrcBE = ALUSrcE ? ExtImmE : SrcBEPrime;
 	 
     // TODO: insert your alu here
     // TODO: instantiation comment
@@ -188,6 +198,7 @@ module arm (
         MemWriteM <= CondExE & MemWriteE;
         MemToRegM <= MemToRegE;
 		  ALUOutM <= ALUResultE;
+		  WriteDataM <= WriteDataE;
     end
     
     // writeback reg
@@ -327,7 +338,7 @@ module arm (
 	// FlagsReg holds our ALU Flags for later use 
 	
 	// This Module holds the flags for use in the next clock cycle
-	FlagsReg flgreg (ALUFlags, FlagWriteE, clk, FlagsPrime);
+	//FlagsReg flgreg (ALUFlags, FlagWriteE, clk, FlagsE);
 
 	
 	always_comb begin // Determine if condition is true via saved ALU Flags

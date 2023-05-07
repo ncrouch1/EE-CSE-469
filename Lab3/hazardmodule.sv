@@ -39,8 +39,8 @@ logic Match_W [1:0];
 
 // Data forwarding logic
 assign Match_M[0] = (RA1E == WA3M);
-assign Match_M[1] = (RA1E == WA3M);
-assign Match_W[0] = (RA2E == WA3W);
+assign Match_M[1] = (RA2E == WA3M);
+assign Match_W[0] = (RA1E == WA3W);
 assign Match_W[1] = (RA2E == WA3W);
 always_comb begin
 
