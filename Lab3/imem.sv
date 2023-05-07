@@ -16,10 +16,10 @@ module imem(
     input  logic [31:0] addr,
     output logic [31:0] instr
 );
-    logic [31:0] memory [11:0];
+    logic [31:0] memory [63:0];
 
     // modify the name and potentially directory prefix of the file within to load the correct program and preprocessing
-    initial $readmemb("C:/Users/noah-/Documents/EE-CSE-469/Lab3/memfile3.dat", memory);
+    initial $readmemb("C:/CSE469/EE-CSE-469/Lab3/memfile2.dat", memory);
 
 
     assign instr = memory[addr[31:2]]; // word aligned, drops bottom 2 bits

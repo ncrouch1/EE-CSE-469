@@ -23,7 +23,7 @@ module top(
         .rst        (rst        ),
         .InstrF      (Instr      ),
         .ReadDataM   (ReadData   ),
-        .WriteDataE  (WriteData  ), 
+        .WriteDataM  (WriteData  ), 
         .PCF         (PC         ), 
         .ALUOutM  (ALUResult  ),
         .MemWriteM   (MemWrite   )
@@ -89,10 +89,10 @@ module testbench2();
 //        else                                                 $display("Task 1 Failed");
 
 //        task 2:
-//        assert(cpu.processor.u_reg_file.memory[8] == 32'd1)  $display("Task 2 Passed");
-//        else                                                 $display("Task 2 Failed");
+        assert(cpu.processor.u_reg_file.memory[8] == 32'd1)  $display("Task 2 Passed");
+        else                                                 $display("Task 2 Failed");
 
-//        $stop;
+        $stop;
     end
 
 endmodule 
